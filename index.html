@@ -1,339 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AngelWorx — Film & Production</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AngelWorx — Film & Production</title>
 
-  <!-- Icons -->
-  <script src="https://unpkg.com/feather-icons"></script>
+<!-- feather icons -->
+<script src="https://unpkg.com/feather-icons"></script>
 
-  <!-- Favicon -->
-  <link rel="icon" href="assets/favicon.ico" />
+<link rel="icon" href="assets/favicon.ico" />
 
-  <style>
-    :root {
-      --bg: #ffffff;
-      --ink: #0b0e14;
-      --muted: #6b7280;
+<style>
+  :root{
+    --bg: #ffffff;
+    --ink: #0f1215;
+    --muted: #6b7280;
+    --blue: #1f3cff;
+    --cyan: #00e5ff;
+    --red: #ff2d2d;
+    --border: rgba(0,0,0,0.06);
+  }
 
-      /* Modern RGB palette */
-      --cyan: #00e5ff;
-      --red: #ff2d2d;
-      --blue: #1f3cff;
+  html { scroll-behavior: smooth; }
+  *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  body{background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
 
-      --glass: rgba(255,255,255,0.7);
-      --border: rgba(0,0,0,0.08);
-    }
+  /* NAV */
+  nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,0.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem}
+  .nav-left{display:flex;align-items:center;gap:0.75rem}
+  .nav-left img{height:40px;width:auto;display:block}
+  .nav-links{display:flex;gap:1.25rem;align-items:center}
+  .nav-links a{color:var(--muted);font-weight:600;font-size:.95rem}
+  .nav-links a:hover{color:var(--blue)}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    }
+  /* HERO */
+  .hero{padding:6.5rem 1.5rem 4rem;max-width:1080px;margin:0 auto;text-align:center}
+  .brand-center{font-weight:800;font-size:2.25rem;letter-spacing:-0.02em;margin-bottom:0.5rem}
+  .tagline{font-style:normal;color:var(--muted);margin-top:0.6rem}
+  .statement{font-size:clamp(1.6rem,3.5vw,2.4rem);line-height:1.05;margin-top:1.1rem}
+  .statement .accent{color:var(--blue)}
 
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      line-height: 1.6;
-    }
+  .cta{margin-top:1.8rem;display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap}
+  .btn{padding:.75rem 1.6rem;border-radius:999px;font-weight:700;border:none;cursor:pointer}
+  .btn-primary{background:var(--blue);color:white}
+  .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--ink)}
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+  /* SECTIONS */
+  section{padding:4rem 1.5rem;max-width:1080px;margin:0 auto}
+  .section-title{font-size:1.6rem;font-weight:700;margin-bottom:1.25rem;color:var(--ink)}
 
-    /* NAV */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--glass);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+  /* GALLERY */
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+  .gallery-item{border-radius:12px;overflow:hidden;box-shadow:0 18px 40px rgba(12,12,15,0.06);background:#fff}
+  .gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .36s ease}
+  .gallery-item:hover img{transform:translateY(-6px) scale(1.02)}
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.3px;
-    }
+  /* PROJECTS */
+  .projects .card{background:#fbfbfb;padding:1.25rem;border-radius:12px;border:1px solid var(--border);margin-bottom:1rem}
 
-    .brand img {
-      height: 36px;
-      width: auto;
-    }
+  /* SERVICES */
+  .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+  .service{padding:1.6rem;border-radius:12px;border:1px solid var(--border);background:#fff;font-weight:600;transition:transform .28s ease,box-shadow .28s ease}
+  .service:focus,.service:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(14,14,20,0.06)}
 
-    nav ul {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-      font-size: 0.95rem;
-    }
+  /* UPDATES / BLOG */
+  .post{padding:1rem;border-left:4px solid var(--blue);background:#fff;border-radius:8px;margin-bottom:1rem}
+  .post small{display:block;color:var(--muted);margin-bottom:.5rem}
 
-    nav ul a:hover {
-      color: var(--blue);
-    }
+  /* CONTACT */
+  #contact{background:#fbfbfb;border-radius:12px;padding:1.5rem;border:1px solid var(--border)}
+  form{display:grid;gap:.75rem}
+  input,textarea{padding:.75rem;border-radius:8px;border:1px solid #e7e7ea;font-size:.95rem}
+  button[type="submit"]{margin-top:.5rem;padding:.75rem;border-radius:10px;border:none;background:linear-gradient(90deg,var(--cyan),var(--blue));color:#fff;font-weight:700;cursor:pointer}
 
-    /* HERO */
-    header {
-      padding: 7rem 2rem 5rem;
-      max-width: 1200px;
-      margin: auto;
-    }
+  .socials{display:flex;gap:.75rem;margin-top:.75rem;align-items:center}
+  .socials a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:999px;border:1px solid var(--border);color:var(--muted)}
+  .socials a:hover{background:var(--blue);color:#fff;border-color:transparent}
 
-    header h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
+  footer{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:.95rem;margin-top:2rem}
 
-    header p.quote {
-      font-style: italic;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-    }
+  /* Accessibility focus */
+  a:focus,button:focus,input:focus,textarea:focus{outline:3px solid rgba(31,60,255,0.12);outline-offset:3px}
 
-    header h2 {
-      font-weight: 400;
-      max-width: 700px;
-      color: #111827;
-    }
-
-    .hero-accent {
-      background: linear-gradient(90deg, var(--cyan), var(--blue), var(--red));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    /* SECTIONS */
-    section {
-      padding: 5rem 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .section-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 2rem;
-    }
-
-    /* GALLERY */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .gallery img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 16px;
-      transition: transform 0.4s ease;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.03);
-    }
-
-    /* PROJECTS */
-    .project {
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 2rem;
-      margin-bottom: 1.5rem;
-      background: #fafafa;
-    }
-
-    .project h4 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    /* SERVICES */
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .service-card {
-      padding: 2rem;
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      background: #ffffff;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .service-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    }
-
-    /* BLOG / STATUS */
-    .post {
-      border-left: 4px solid var(--blue);
-      padding-left: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .post span {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    /* CONTACT */
-    .socials {
-      display: flex;
-      gap: 1.25rem;
-      margin-top: 1.5rem;
-    }
-
-    .socials a {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-
-    .socials a:hover {
-      background: var(--blue);
-      color: white;
-    }
-
-    footer {
-      text-align: center;
-      padding: 3rem 2rem;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation: none !important;
-        transition: none !important;
-      }
-    }
-  </style>
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
 </head>
-
 <body>
 
+<!-- NAV -->
 <nav>
-  <div class="brand">
-    <img src="assets/Gemini_Generated_Image_3as9hz3as9hz3as9" alt="AngelWorx Logo">
-    <span>AngelWorx</span>
+  <div class="nav-left" role="banner">
+    <!-- logo with fallback: tries .png then .jpg -->
+    <img id="logo" src="assets/Gemini_Generated_Image_3as9hz3as9hz3as9.png" alt="AngelWorx logo" onerror="(function(e){e.onerror=null;e.src='assets/Gemini_Generated_Image_3as9hz3as9hz3as9.jpg';}) (this)">
   </div>
 
-  <ul>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#updates">Updates</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <div class="nav-links" role="navigation" aria-label="Main navigation">
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#updates">Updates</a>
+    <a href="#contact" id="nav-contact">Contact</a>
+  </div>
 </nav>
 
-<header>
-  <p class="quote">“Build in silence. Let the frame make the noise.”</p>
-  <h1>
-    <span class="hero-accent">Stories that move culture.</span><br>
-    Film. Image. Intent.
-  </h1>
-  <h2>
-    AngelWorx is a modern film & production studio focused on bold visuals,
-    grounded storytelling, and work that travels beyond the screen.
-  </h2>
+<!-- HERO -->
+<header class="hero" role="banner">
+  <div class="brand-center">AngelWorx</div>
+
+  <p class="tagline">Build in silence. Let the frame make the noise.</p>
+
+  <!-- Restored line exactly as requested -->
+  <div class="statement">We don’t chase attention. <span class="accent">We frame it.</span></div>
+
+  <div class="cta" aria-hidden="false" style="margin-top:1.5rem">
+    <a class="btn btn-primary" href="#work">View Work</a>
+    <a class="btn btn-ghost" href="#contact">Contact Studio</a>
+  </div>
 </header>
 
-<section id="work">
-  <h3 class="section-title">Selected Work</h3>
+<!-- SELECTED WORK -->
+<section id="work" aria-labelledby="work-title">
+  <h2 id="work-title" class="section-title">Selected Work</h2>
 
-  <div class="gallery">
-    <img src="assets/DSC_0125.JPG" alt="March to the DTIC poster">
-    <img src="assets/DSC_0125.JPG" alt="Production still">
-    <img src="assets/DSC_0125.JPG" alt="Campaign visual">
+  <div class="gallery" role="list">
+    <!-- you said DSC_0125.JPG is a gallery file — using it first -->
+    <div class="gallery-item" role="listitem"><img src="assets/DSC_0125.JPG" alt="DTIC poster — AngelWorx"></div>
+    <!-- placeholders reuse the same file so site looks full — replace with your real files -->
+    <div class="gallery-item" role="listitem"><img src="assets/poster2.jpg" alt="Poster 2"></div>
+    <div class="gallery-item" role="listitem"><img src="assets/poster3.jpg" alt="Poster 3"></div>
   </div>
 </section>
 
-<section>
-  <div class="project">
-    <h4>Highveld Hustlers — Pilot</h4>
-    <p>Raw street energy. Character-driven. Built for culture, not algorithms.</p>
-  </div>
+<!-- PROJECTS -->
+<section id="projects" aria-labelledby="projects-title">
+  <h2 id="projects-title" class="section-title">Current Projects</h2>
 
-  <div class="project">
-    <h4>The Last Will — Short Film</h4>
-    <p>An intimate look at legacy, silence, and consequence.</p>
-  </div>
-</section>
+  <div class="projects">
+    <div class="card project">
+      <strong>Highveld Hustlers — Pilot</strong>
+      <p style="color:var(--muted);margin-top:.5rem">Raw, character-driven pilot rooted in place and sound.</p>
+    </div>
 
-<section id="services">
-  <h3 class="section-title">Services</h3>
-
-  <div class="services">
-    <div class="service-card">Film Production (Short / Long-form)</div>
-    <div class="service-card">Photography & Visual Campaigns</div>
-    <div class="service-card">Post-Production & Editing</div>
-    <div class="service-card">Creative Direction</div>
-    <div class="service-card">Documentary & Cultural Work</div>
+    <div class="card project">
+      <strong>The Last Will — Short Film</strong>
+      <p style="color:var(--muted);margin-top:.5rem">An intimate story about legacy and silence.</p>
+    </div>
   </div>
 </section>
 
-<section id="updates">
-  <h3 class="section-title">What’s Happening</h3>
+<!-- SERVICES (added Animation + Location Scouting) -->
+<section id="services" aria-labelledby="services-title">
+  <h2 id="services-title" class="section-title">Capabilities</h2>
 
-  <div class="post">
-    <span>March 2026</span>
-    <p>AngelWorx joins the march to the DTIC — advocating for fair treatment of film workers and sustainable creative economies.</p>
-  </div>
-
-  <div class="post">
-    <span>February 2026</span>
-    <p>Pre-production begins on our next short. Quiet now. Loud later.</p>
+  <div class="services" role="list">
+    <div class="service service-card" tabindex="0" role="listitem">Concept & Development</div>
+    <div class="service service-card" tabindex="0" role="listitem">Film Production (Short & Long-form)</div>
+    <div class="service service-card" tabindex="0" role="listitem">Cinematography</div>
+    <div class="service service-card" tabindex="0" role="listitem">Post-Production & Editing</div>
+    <div class="service service-card" tabindex="0" role="listitem">Animation & Motion Design</div>
+    <div class="service service-card" tabindex="0" role="listitem">Location Scouting</div>
+    <div class="service service-card" tabindex="0" role="listitem">Casting & Talent</div>
+    <div class="service service-card" tabindex="0" role="listitem">Photography & Campaigns</div>
   </div>
 </section>
 
-<section id="contact">
-  <h3 class="section-title">Connect</h3>
+<!-- UPDATES / BLOG / STATUS -->
+<section id="updates" aria-labelledby="updates-title">
+  <h2 id="updates-title" class="section-title">What’s Happening</h2>
 
-  <p>For collaborations, commissions, or serious conversations.</p>
+  <article class="post" aria-labelledby="post-1">
+    <small id="post-1">March 2026</small>
+    <p>AngelWorx joins the March to the DTIC — posters out, team in the streets.</p>
+  </article>
 
-  <div class="socials">
-    <a href="https://youtube.com/@lesjones-tt2dy" target="_blank" aria-label="YouTube">
-      <i data-feather="youtube"></i>
-    </a>
+  <article class="post" aria-labelledby="post-2">
+    <small id="post-2">Feb 2026</small>
+    <p>Pre-production on our next short. Quiet now. Loud later.</p>
+  </article>
 
-    <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
-      <i data-feather="instagram"></i>
-    </a>
+  <!-- Quick authoring hint for you:
+       To add a new update, create a new <article class="post"> here and commit. -->
+</section>
 
-    <a href="mailto:contact@angelworx.co.za" aria-label="Email">
-      <i data-feather="mail"></i>
-    </a>
+<!-- CONTACT -->
+<section id="contact" aria-labelledby="contact-title">
+  <h2 id="contact-title" class="section-title">Contact</h2>
+
+  <div id="contact" style="max-width:760px;margin:auto">
+    <p style="color:var(--muted)">For collaborations, commissions, press, and investor enquiries.</p>
+
+    <form id="contact-form" aria-label="Contact form">
+      <input id="cf-name" name="name" type="text" placeholder="Your name" required />
+      <input id="cf-email" name="email" type="email" placeholder="Email" required />
+      <textarea id="cf-message" name="message" rows="5" placeholder="Tell us what you're building" required></textarea>
+      <button type="submit" aria-label="Send message">Send message</button>
+    </form>
+
+    <div class="socials" role="list">
+      <a href="https://youtube.com/@lesjones-tt2dy" target="_blank" aria-label="YouTube"><i data-feather="youtube"></i></a>
+      <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i data-feather="instagram"></i></a>
+      <a href="mailto:contact@angelworx.co.za" aria-label="Email"><i data-feather="mail"></i></a>
+    </div>
   </div>
 </section>
 
 <footer>
-  © 2026 AngelWorx. Built with intent.
+  © 2026 AngelWorx — Built with intent.
 </footer>
 
 <script>
+  // render feather icons
   feather.replace();
-</script>
 
+  // ensure nav anchor to contact scrolls and focuses the message field
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', (ev)=>{
+      const targetId = a.getAttribute('href').slice(1);
+      if(!targetId) return;
+      const el = document.getElementById(targetId);
+      if(el){
+        ev.preventDefault();
+        el.scrollIntoView({behavior:'smooth', block:'center'});
+        // if contact, focus textarea after scroll
+        if(targetId === 'contact'){
+          setTimeout(()=>{ const ta = document.getElementById('cf-message'); if(ta) ta.focus(); }, 550);
+        }
+      }
+    });
+  });
+
+  // contact form (placeholder) — replace when ready to connect backend
+  document.getElementById('contact-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    // simple validation message
+    alert('Thanks — message received. We will respond shortly.');
+    e.target.reset();
+  });
+
+  // keyboard accessible service cards
+  document.querySelectorAll('.service-card').forEach(card=>{
+    card.addEventListener('keydown', e=>{
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        card.classList.toggle('active');
+        // small visual response
+        card.style.transform = card.style.transform ? '' : 'translateY(-6px)';
+      }
+    });
+  });
+
+  // small safety: if logo fails to load (no extension), try .jpg next (handled inline via onerror)
+</script>
 </body>
 </html>
