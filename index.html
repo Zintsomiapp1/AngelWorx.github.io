@@ -1,396 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AngelWorx — Film & Production</title>
-  <meta name="description" content="AngelWorx is a film and production studio crafting cinematic stories, striking visuals, and premium motion work." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AngelWorx | Film & Production</title>
+<link rel="icon" href="assets/favicon.ico">
+<style>
+  /* Reset */
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Helvetica Neue', sans-serif; }
+  html { scroll-behavior: smooth; }
 
-  <!-- Favicons & manifest (relative paths for project site) -->
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-  <link rel="manifest" href="assets/site.webmanifest">
-  <link rel="mask-icon" href="assets/favicon-32x32.png" color="#9aa7ff">
-  <link rel="shortcut icon" href="assets/favicon.ico">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="assets/apple-touch-icon.png">
-  <meta name="theme-color" content="#ffffff">
+  /* Dark luxury */
+  body { background:#0b0b0b; color:#f1f1f1; line-height:1.6; }
+  a { color:inherit; text-decoration:none; }
 
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="AngelWorx — Film & Production" />
-  <meta property="og:description" content="AngelWorx is a film and production studio crafting cinematic stories, striking visuals, and premium motion work." />
-  <meta property="og:image" content="assets/logo.png" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
+  /* Hero */
+  header { display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; text-align:center; padding:0 2rem; background: linear-gradient(135deg, #1a1a1a, #111); }
+  header h1 { font-size:3rem; margin-bottom:0.5rem; }
+  header p.quote { font-style:italic; color:#aaa; margin-bottom:1rem; }
+  header h2 { font-size:1.5rem; margin-bottom:2rem; max-width:600px; }
+  .cta-buttons { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; }
+  .cta-buttons a { padding:0.8rem 2rem; border:2px solid #f1f1f1; border-radius:10px; transition:0.3s; }
+  .cta-buttons a:hover { background:#f1f1f1; color:#111; }
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  /* Sections */
+  section { padding:5rem 2rem; max-width:1200px; margin:auto; }
+  h3.section-title { font-size:2rem; margin-bottom:2rem; text-align:center; }
 
-  <style>
-    :root{
-      --bg:#f7f8fb;
-      --fg:#0f1222;
-      --muted:#6b6f8a;
-      --accent:#cfd6ff; /* angelic lavender */
-      --accent-strong:#9aa7ff;
-      --white:#ffffff;
-    }
+  /* Gallery */
+  .gallery { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:2rem; }
+  .card { background: rgba(255,255,255,0.05); backdrop-filter: blur(8px); border-radius:15px; overflow:hidden; transition:0.3s; cursor:pointer; }
+  .card img { width:100%; display:block; }
+  .card:hover { transform: scale(1.05); }
 
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    body{
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      background:linear-gradient(180deg,#ffffff 0%, #f2f4ff 100%);
-      color:var(--fg);
-      line-height:1.6;
-    }
+  /* Work & Social */
+  .work-item { display:flex; justify-content:space-between; align-items:center; background: rgba(255,255,255,0.05); padding:1rem; border-radius:10px; margin-bottom:1rem; transition:0.3s; }
+  .work-item:hover { background: rgba(255,255,255,0.1); }
 
-    a{color:inherit;text-decoration:none}
+  /* Form */
+  form { display:flex; flex-direction:column; gap:1rem; max-width:600px; margin:auto; }
+  input, textarea { padding:0.8rem; border-radius:8px; border:none; background: rgba(255,255,255,0.05); color:#f1f1f1; }
+  input:focus, textarea:focus { outline:2px solid #f1f1f1; }
+  button { padding:0.8rem; border:none; border-radius:8px; background:#f1f1f1; color:#111; cursor:pointer; transition:0.3s; }
+  button:hover { background:#e1e1e1; }
 
-    .container{
-      max-width:1200px;
-      margin:0 auto;
-      padding:32px 24px;
-    }
+  /* Services */
+  .services { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:2rem; }
+  .service-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(8px); border-radius:15px; padding:2rem; text-align:center; cursor:pointer; transition:0.3s; }
+  .service-card:hover, .service-card:focus { transform:scale(1.05); outline:none; }
 
-    header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:12px 0 28px;
-    }
+  /* Register */
+  .register { text-align:center; }
+  .register a { padding:0.8rem 2rem; border:2px solid #f1f1f1; border-radius:10px; display:inline-block; margin-top:1rem; transition:0.3s; }
+  .register a:hover { background:#f1f1f1; color:#111; }
 
-    .logo{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
+  /* Accessibility */
+  :focus { outline:2px solid #f1f1f1; outline-offset:4px; }
 
-    .logo img{
-      height:44px;
-      width:auto;
-      display:block;
-    }
-
-    .site-title{
-      font-family:'Playfair Display',serif;
-      font-weight:700;
-      letter-spacing:1px;
-      font-size:20px;
-    }
-
-    nav a{
-      margin-left:28px;
-      font-size:14px;
-      color:var(--muted);
-    }
-
-    nav a:hover{color:var(--fg)}
-
-    /* HERO */
-    .hero{
-      padding:120px 0 140px;
-      text-align:center;
-      position:relative;
-    }
-
-    .halo{
-      position:absolute;
-      inset:0;
-      background:radial-gradient(circle at center, var(--accent) 0%, transparent 60%);
-      opacity:.6;
-      z-index:-1;
-    }
-
-    .hero h1{
-      font-family:'Playfair Display',serif;
-      font-size:clamp(42px,6vw,78px);
-      margin:0 0 16px;
-      font-weight:600;
-    }
-
-    .hero p{
-      max-width:680px;
-      margin:0 auto 36px;
-      font-size:18px;
-      color:var(--muted);
-    }
-
-    .cta{
-      display:flex;
-      justify-content:center;
-      gap:16px;
-    }
-
-    .btn{
-      padding:14px 26px;
-      border-radius:999px;
-      font-size:14px;
-      border:1px solid var(--accent-strong);
-      background:var(--white);
-    }
-
-    .btn.primary{
-      background:var(--accent-strong);
-      color:white;
-      border:none;
-    }
-
-    /* SECTIONS */
-    section{
-      padding:96px 0;
-    }
-
-    h2{
-      font-family:'Playfair Display',serif;
-      font-size:36px;
-      margin:0 0 32px;
-      text-align:center;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:32px;
-    }
-
-    .card{
-      background:var(--white);
-      border-radius:20px;
-      padding:20px;
-      box-shadow:0 20px 40px rgba(15,18,34,0.08);
-      transition:transform .3s ease, box-shadow .3s ease;
-    }
-
-    .card:hover{
-      transform:translateY(-6px);
-      box-shadow:0 30px 60px rgba(15,18,34,0.12);
-    }
-
-    .thumb{
-      height:180px;
-      border-radius:14px;
-      background:linear-gradient(135deg,var(--accent),#ffffff);
-      margin-bottom:16px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:13px;
-      color:var(--muted);
-      overflow:hidden;
-    }
-
-    .thumb img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-
-    .card h3{
-      margin:0 0 8px;
-      font-size:18px;
-    }
-
-    .card p{
-      font-size:14px;
-      color:var(--muted);
-    }
-
-    /* SERVICES */
-    .services{
-      max-width:800px;
-      margin:0 auto;
-      text-align:center;
-    }
-
-    .services p{
-      color:var(--muted);
-      margin-bottom:32px;
-    }
-
-    .service-list{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:24px;
-    }
-
-    /* ABOUT */
-    .about{
-      max-width:760px;
-      margin:0 auto;
-      text-align:center;
-      font-size:16px;
-      color:var(--muted);
-    }
-
-    /* CURRENT WORK */
-    .current-list{
-      max-width:920px;
-      margin:0 auto;
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:20px;
-      align-items:start;
-    }
-    .project-status{
-      display:inline-block;
-      margin-top:8px;
-      padding:6px 10px;
-      border-radius:999px;
-      background:var(--accent);
-      color:var(--fg);
-      font-size:13px;
-    }
-
-    /* CONTACT */
-    .contact{
-      text-align:center;
-    }
-
-    .contact a{
-      display:inline-block;
-      margin:8px 12px;
-      padding:12px 20px;
-      border-radius:999px;
-      border:1px solid var(--accent-strong);
-      font-size:14px;
-    }
-
-    footer{
-      padding:48px 0 32px;
-      text-align:center;
-      font-size:13px;
-      color:var(--muted);
-    }
-
-    @media (max-width:700px){
-      nav{display:none}
-      .hero{padding:90px 0 110px}
-      .site-title{display:none}
-    }
-  </style>
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition:none !important; animation:none !important; }
+  }
+</style>
 </head>
 <body>
-  <div class="container">
 
-    <header>
-      <a href="./" class="logo" aria-label="AngelWorx home">
-        <img src="assets/logo.png" srcset="assets/logo.png 1x" alt="AngelWorx logo">
-        <span class="site-title">AngelWorx</span>
-      </a>
-      <nav aria-label="Main navigation">
-        <a href="#work">Work</a>
-        <a href="#current">Current</a>
-        <a href="#services">Services</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
-
-    <main>
-      <section class="hero" aria-labelledby="hero-heading">
-        <div class="halo" aria-hidden="true"></div>
-        <h1 id="hero-heading">Where stories ascend.</h1>
-        <p>AngelWorx is a film and production studio creating cinematic worlds, striking imagery, and work that feels elevated, intentional, and timeless.</p>
-        <div class="cta">
-          <a href="#work" class="btn primary">View Work</a>
-          <a href="#contact" class="btn">Contact</a>
-        </div>
-      </section>
-
-      <section id="work">
-        <h2>Selected Work</h2>
-        <div class="grid" role="list">
-          <article class="card" role="listitem" aria-labelledby="work-1-title">
-            <div class="thumb" aria-hidden="false">
-              <img src="https://images.unsplash.com/photo-1507120410856-1f35574c3b45?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=example" alt="Cinematic frame from Ascension short film" loading="lazy">
-            </div>
-            <h3 id="work-1-title">Ascension — Short Film (2024)</h3>
-            <p>A measured short exploring memory and ritual through quiet, cinematic frames. Director: L. Hartman — DOP: K. Reyes.</p>
-          </article>
-
-          <article class="card" role="listitem" aria-labelledby="work-2-title">
-            <div class="thumb">
-              <img src="https://images.unsplash.com/photo-1503264116251-35a269479413?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=example" alt="Portrait series frame — Silver Hour" loading="lazy">
-            </div>
-            <h3 id="work-2-title">Silver Hour — Visual Series (2023)</h3>
-            <p>Stills series about light and atmosphere for editorial projects and gallery shows.</p>
-          </article>
-
-          <article class="card" role="listitem" aria-labelledby="work-3-title">
-            <div class="thumb">
-              <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=example" alt="Brand film still" loading="lazy">
-            </div>
-            <h3 id="work-3-title">Elevate — Brand Film (2025)</h3>
-            <p>Premium brand film produced for Elevate Co., focused on craft, makers, and tactile storytelling.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="current">
-        <h2>Current Work</h2>
-        <div class="current-list" role="list">
-          <article class="card" role="listitem" aria-labelledby="current-1-title">
-            <h3 id="current-1-title">Highveld Hustlers — Pilot</h3>
-            <p>A character-driven pilot centered on life and grit in the Highveld. We're currently in production on the pilot episode, focusing on establishing tone, casting, and principal photography.</p>
-            <span class="project-status" aria-hidden="false">In production — Pilot</span>
-          </article>
-
-          <article class="card" role="listitem" aria-labelledby="current-2-title">
-            <h3 id="current-2-title">The Last Will — Short Film</h3>
-            <p>A short film exploring legacy and consequence through intimate, atmospheric storytelling. We're actively developing the shoot schedule, locations, and casting for the short.</p>
-            <span class="project-status" aria-hidden="false">In development — Short Film</span>
-          </article>
-        </div>
-      </section>
-
-      <section id="services">
-        <h2>Services</h2>
-        <div class="services">
-          <p>We operate across concept, production, and post — delivering polished work with intention and clarity.</p>
-          <div class="service-list">
-            <div class="card" aria-labelledby="service-1"><h3 id="service-1">Film Production</h3><p>Full production pipelines: development, shooting, and delivery. Crew hiring, location scouting, and production management.</p></div>
-            <div class="card" aria-labelledby="service-2"><h3 id="service-2">Photography</h3><p>Editorial, commercial, and cinematic stills, with on-location and studio capability.</p></div>
-            <div class="card" aria-labelledby="service-3"><h3 id="service-3">Editing & Post</h3><p>Story-driven editing, color grading, and sound design to shape tone and rhythm.</p></div>
-            <div class="card" aria-labelledby="service-4"><h3 id="service-4">Creative Direction</h3><p>Concept, visual language, and art direction to maintain narrative cohesion across deliverables.</p></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="about">
-        <h2>About AngelWorx</h2>
-        <div class="about">
-          <p>AngelWorx was formed around the belief that visual work should feel intentional, elevated, and emotionally resonant. We approach every project with restraint, clarity, and a strong cinematic sensibility. Our team blends narrative directing, photography, and thoughtful post-production to craft pieces that linger.</p>
-          <p>We collaborate with brands, agencies, and independent artists. Whether the brief calls for a quiet short or a high-energy commercial, we prioritize composition, lighting, and editorial choices that serve the story first.</p>
-        </div>
-      </section>
-
-      <section id="contact">
-        <h2>Contact</h2>
-        <div class="contact">
-          <a href="mailto:hello@angelworx.com" aria-label="Email AngelWorx">hello@angelworx.com</a>
-          <a href="https://instagram.com/angelworx" target="_blank" rel="noopener" aria-label="AngelWorx on Instagram">Instagram</a>
-          <a href="https://vimeo.com/angelworx" target="_blank" rel="noopener" aria-label="AngelWorx on Vimeo">Vimeo</a>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      © <span id="year"></span> AngelWorx. All rights reserved.
-    </footer>
-
+<header>
+  <h1>AngelWorx</h1>
+  <p class="quote">"Build in silence. Let the frame make the noise."</p>
+  <h2>Modern visuals. Expensive taste. Stories that move culture.</h2>
+  <div class="cta-buttons">
+    <a href="#gallery">View Gallery</a>
+    <a href="#auditions">Send Audition Tape</a>
   </div>
+</header>
 
-  <script>
-    // current year and small smooth-scroll enhancement
-    document.getElementById('year').textContent = new Date().getFullYear();
+<section id="gallery">
+  <h3 class="section-title">Gallery</h3>
+  <div class="gallery">
+    <div class="card"><img src="https://via.placeholder.com/400x250?text=Cinematic+1" alt="Cinematic scene 1"></div>
+    <div class="card"><img src="https://via.placeholder.com/400x250?text=Cinematic+2" alt="Cinematic scene 2"></div>
+    <div class="card"><img src="https://via.placeholder.com/400x250?text=Cinematic+3" alt="Cinematic scene 3"></div>
+  </div>
+</section>
 
-    // enable smooth scroll for in-page anchors (keeps browser default for accessibility)
-    document.documentElement.style.scrollBehavior = 'smooth';
-  </script>
+<section id="work">
+  <h3 class="section-title">Current Work & Social</h3>
+  <div class="work-item">
+    <span>Highveld Hustlers — Pilot</span>
+    <span><a href="https://www.instagram.com" target="_blank">Instagram</a> / <a href="https://youtube.com" target="_blank">YouTube</a></span>
+  </div>
+  <div class="work-item">
+    <span>The Last Will — Short Film</span>
+    <span><a href="https://vimeo.com" target="_blank">Vimeo</a> / <a href="https://twitter.com" target="_blank">X</a></span>
+  </div>
+</section>
+
+<section id="auditions">
+  <h3 class="section-title">Audition Tapes & Submissions</h3>
+  <form action="https://formspree.io/f/your-endpoint" method="POST">
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="role" placeholder="Role">
+    <input type="url" name="portfolio" placeholder="Portfolio Link">
+    <textarea name="intro" placeholder="Short Introduction" rows="4"></textarea>
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+<section id="services">
+  <h3 class="section-title">Services</h3>
+  <div class="services">
+    <div class="service-card" tabindex="0">Film Production</div>
+    <div class="service-card" tabindex="0">Photography</div>
+    <div class="service-card" tabindex="0">Post Production</div>
+    <div class="service-card" tabindex="0">Casting & Talent</div>
+  </div>
+</section>
+
+<section id="register" class="register">
+  <h3 class="section-title">Register & Next Steps</h3>
+  <p>We recommend using Supabase or Firebase for auth and user management.</p>
+  <a href="#auditions">Get Started</a>
+</section>
+
+<script>
+  // Keyboard accessibility for service cards
+  document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('keydown', e => {
+      if(e.key === "Enter" || e.key === " ") {
+        alert('Clicked on ' + card.textContent);
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
