@@ -1,254 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AngelWorx — Film & Production</title>
 
-<!-- feather icons -->
-<script src="https://unpkg.com/feather-icons"></script>
-
-<link rel="icon" href="assets/favicon.ico" />
+<link rel="icon" href="assets/favicon.ico">
 
 <style>
-  :root{
-    --bg: #ffffff;
-    --ink: #0f1215;
-    --muted: #6b7280;
-    --blue: #1f3cff;
-    --cyan: #00e5ff;
-    --red: #ff2d2d;
-    --border: rgba(0,0,0,0.06);
+  :root {
+    --bg: #fff;
+    --ink: #0e1116;
+    --muted: #777;
+    --border: rgba(0,0,0,0.1);
+    --accent: #1f3cff; /* crisp cinematic blue for elements */
   }
 
-  html { scroll-behavior: smooth; }
-  *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-  body{background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  a { text-decoration: none; color: inherit; }
 
   /* NAV */
-  nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,0.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem}
-  .nav-left{display:flex;align-items:center;gap:0.75rem}
-  .nav-left img{height:40px;width:auto;display:block}
-  .nav-links{display:flex;gap:1.25rem;align-items:center}
-  .nav-links a{color:var(--muted);font-weight:600;font-size:.95rem}
-  .nav-links a:hover{color:var(--blue)}
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+  }
+  nav img { height: 42px; }
+  nav .links { display: flex; gap: 1.75rem; font-size: .95rem; color: var(--muted); }
+  nav .links a:hover { color: var(--accent); }
 
   /* HERO */
-  .hero{padding:6.5rem 1.5rem 4rem;max-width:1080px;margin:0 auto;text-align:center}
-  .brand-center{font-weight:800;font-size:2.25rem;letter-spacing:-0.02em;margin-bottom:0.5rem}
-  .tagline{font-style:normal;color:var(--muted);margin-top:0.6rem}
-  .statement{font-size:clamp(1.6rem,3.5vw,2.4rem);line-height:1.05;margin-top:1.1rem}
-  .statement .accent{color:var(--blue)}
+  .hero {
+    text-align: center;
+    padding: 8rem 1rem 5rem;
+    max-width: 960px;
+    margin: auto;
+  }
+  .hero h1 {
+    font-size: clamp(2.5rem, 5vw, 3.4rem);
+    font-weight: 700;
+  }
+  .hero p { margin-top: .8rem; font-size: 1.1rem; color: var(--muted); }
+  .hero .mantra { margin-top: 1.4rem; font-style: italic; }
 
-  .cta{margin-top:1.8rem;display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap}
-  .btn{padding:.75rem 1.6rem;border-radius:999px;font-weight:700;border:none;cursor:pointer}
-  .btn-primary{background:var(--blue);color:white}
-  .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--ink)}
+  /* FULL BLEED FEATURE */
+  .feature {
+    margin: 3rem 0;
+  }
+  .feature img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
 
-  /* SECTIONS */
-  section{padding:4rem 1.5rem;max-width:1080px;margin:0 auto}
-  .section-title{font-size:1.6rem;font-weight:700;margin-bottom:1.25rem;color:var(--ink)}
-
-  /* GALLERY */
-  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
-  .gallery-item{border-radius:12px;overflow:hidden;box-shadow:0 18px 40px rgba(12,12,15,0.06);background:#fff}
-  .gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .36s ease}
-  .gallery-item:hover img{transform:translateY(-6px) scale(1.02)}
+  /* GALLERY GRID */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .gallery img {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: transform .3s ease;
+  }
+  .gallery img:hover { transform: scale(1.03); }
 
   /* PROJECTS */
-  .projects .card{background:#fbfbfb;padding:1.25rem;border-radius:12px;border:1px solid var(--border);margin-bottom:1rem}
+  .projects .project {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .projects strong { font-size: 1.1rem; }
 
   /* SERVICES */
-  .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
-  .service{padding:1.6rem;border-radius:12px;border:1px solid var(--border);background:#fff;font-weight:600;transition:transform .28s ease,box-shadow .28s ease}
-  .service:focus,.service:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(14,14,20,0.06)}
+  .services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    gap: 1.2rem;
+    margin-top: 1rem;
+  }
+  .service-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.4rem;
+    font-weight: 600;
+    transition: transform .3s ease;
+  }
+  .service-card:hover { transform: translateY(-4px); border-color: var(--accent); }
 
-  /* UPDATES / BLOG */
-  .post{padding:1rem;border-left:4px solid var(--blue);background:#fff;border-radius:8px;margin-bottom:1rem}
-  .post small{display:block;color:var(--muted);margin-bottom:.5rem}
+  /* UPDATES */
+  .updates .update {
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+  }
+  .updates small { color: var(--muted); font-size: .9rem; }
 
   /* CONTACT */
-  #contact{background:#fbfbfb;border-radius:12px;padding:1.5rem;border:1px solid var(--border)}
-  form{display:grid;gap:.75rem}
-  input,textarea{padding:.75rem;border-radius:8px;border:1px solid #e7e7ea;font-size:.95rem}
-  button[type="submit"]{margin-top:.5rem;padding:.75rem;border-radius:10px;border:none;background:linear-gradient(90deg,var(--cyan),var(--blue));color:#fff;font-weight:700;cursor:pointer}
+  #contact p { color: var(--muted); margin-bottom: 1rem; }
+  .socials {
+    display: flex;
+    gap: 1rem;
+  }
+  .socials a {
+    padding: .6rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 1.1rem;
+    color: var(--muted);
+  }
+  .socials a:hover { background: var(--accent); color: #fff; border-color: transparent; }
 
-  .socials{display:flex;gap:.75rem;margin-top:.75rem;align-items:center}
-  .socials a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:999px;border:1px solid var(--border);color:var(--muted)}
-  .socials a:hover{background:var(--blue);color:#fff;border-color:transparent}
-
-  footer{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:.95rem;margin-top:2rem}
-
-  /* Accessibility focus */
-  a:focus,button:focus,input:focus,textarea:focus{outline:3px solid rgba(31,60,255,0.12);outline-offset:3px}
-
-  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  footer {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    color: var(--muted);
+    font-size: .9rem;
+  }
 </style>
 </head>
+
 <body>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-left" role="banner">
-    <!-- logo with fallback: tries .png then .jpg -->
-    <img id="logo" src="assets/Gemini_Generated_Image_3as9hz3as9hz3as9.png" alt="AngelWorx logo" onerror="(function(e){e.onerror=null;e.src='assets/Gemini_Generated_Image_3as9hz3as9hz3as9.jpg';}) (this)">
-  </div>
-
-  <div class="nav-links" role="navigation" aria-label="Main navigation">
+  <img src="assets/logo.png" alt="AngelWorx Logo">
+  <div class="links">
     <a href="#work">Work</a>
-    <a href="#services">Services</a>
+    <a href="#services">Studio</a>
     <a href="#updates">Updates</a>
-    <a href="#contact" id="nav-contact">Contact</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
-<!-- HERO -->
-<header class="hero" role="banner">
-  <div class="brand-center">AngelWorx</div>
+<section class="hero">
+  <h1>AngelWorx</h1>
+  <p>Film & Production Studio</p>
+  <p class="mantra">We don’t chase attention. We frame it.</p>
+</section>
 
-  <p class="tagline">Build in silence. Let the frame make the noise.</p>
+<!-- FEATURED FULL BLEED -->
+<div class="feature">
+  <img src="assets/DSC_0125.JPG" alt="Featured production image">
+</div>
 
-  <!-- Restored line exactly as requested -->
-  <div class="statement">We don’t chase attention. <span class="accent">We frame it.</span></div>
-
-  <div class="cta" aria-hidden="false" style="margin-top:1.5rem">
-    <a class="btn btn-primary" href="#work">View Work</a>
-    <a class="btn btn-ghost" href="#contact">Contact Studio</a>
-  </div>
-</header>
-
-<!-- SELECTED WORK -->
-<section id="work" aria-labelledby="work-title">
-  <h2 id="work-title" class="section-title">Selected Work</h2>
-
-  <div class="gallery" role="list">
-    <!-- you said DSC_0125.JPG is a gallery file — using it first -->
-    <div class="gallery-item" role="listitem"><img src="assets/DSC_0125.JPG" alt="DTIC poster — AngelWorx"></div>
-    <!-- placeholders reuse the same file so site looks full — replace with your real files -->
-    <div class="gallery-item" role="listitem"><img src="assets/poster2.jpg" alt="Poster 2"></div>
-    <div class="gallery-item" role="listitem"><img src="assets/poster3.jpg" alt="Poster 3"></div>
+<section id="work">
+  <h2>Selected Gallery</h2>
+  <div class="gallery">
+    <img src="assets/DSC_0125.JPG" alt="Production still 1">
+    <img src="assets/poster2.jpg" alt="Production still 2">
+    <img src="assets/poster3.jpg" alt="Production still 3">
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="projects" aria-labelledby="projects-title">
-  <h2 id="projects-title" class="section-title">Current Projects</h2>
+<section class="projects" id="projects">
+  <h2>Current Projects</h2>
 
-  <div class="projects">
-    <div class="card project">
-      <strong>Highveld Hustlers — Pilot</strong>
-      <p style="color:var(--muted);margin-top:.5rem">Raw, character-driven pilot rooted in place and sound.</p>
-    </div>
+  <div class="project">
+    <strong>Highveld Hustlers — Pilot</strong>
+    <p>Authentic narrative rooted in locality and rhythm.</p>
+  </div>
 
-    <div class="card project">
-      <strong>The Last Will — Short Film</strong>
-      <p style="color:var(--muted);margin-top:.5rem">An intimate story about legacy and silence.</p>
-    </div>
+  <div class="project">
+    <strong>The Last Will — Short Film</strong>
+    <p>Exploring legacy through quiet, meticulous framing.</p>
   </div>
 </section>
 
-<!-- SERVICES (added Animation + Location Scouting) -->
-<section id="services" aria-labelledby="services-title">
-  <h2 id="services-title" class="section-title">Capabilities</h2>
-
-  <div class="services" role="list">
-    <div class="service service-card" tabindex="0" role="listitem">Concept & Development</div>
-    <div class="service service-card" tabindex="0" role="listitem">Film Production (Short & Long-form)</div>
-    <div class="service service-card" tabindex="0" role="listitem">Cinematography</div>
-    <div class="service service-card" tabindex="0" role="listitem">Post-Production & Editing</div>
-    <div class="service service-card" tabindex="0" role="listitem">Animation & Motion Design</div>
-    <div class="service service-card" tabindex="0" role="listitem">Location Scouting</div>
-    <div class="service service-card" tabindex="0" role="listitem">Casting & Talent</div>
-    <div class="service service-card" tabindex="0" role="listitem">Photography & Campaigns</div>
+<section id="services">
+  <h2>Studio Capabilities</h2>
+  <div class="services">
+    <div class="service-card">Film Production</div>
+    <div class="service-card">Documentary</div>
+    <div class="service-card">Animation & Motion Design</div>
+    <div class="service-card">Post-Production</div>
+    <div class="service-card">Photography</div>
+    <div class="service-card">Location Scouting</div>
+    <div class="service-card">Creative Direction</div>
   </div>
 </section>
 
-<!-- UPDATES / BLOG / STATUS -->
-<section id="updates" aria-labelledby="updates-title">
-  <h2 id="updates-title" class="section-title">What’s Happening</h2>
+<section class="updates" id="updates">
+  <h2>Updates</h2>
 
-  <article class="post" aria-labelledby="post-1">
-    <small id="post-1">March 2026</small>
-    <p>AngelWorx joins the March to the DTIC — posters out, team in the streets.</p>
-  </article>
+  <div class="update">
+    <small>March 2026</small>
+    <p>AngelWorx joins the March to the DTIC — posters distributed, voices amplified.</p>
+  </div>
 
-  <article class="post" aria-labelledby="post-2">
-    <small id="post-2">Feb 2026</small>
-    <p>Pre-production on our next short. Quiet now. Loud later.</p>
-  </article>
-
-  <!-- Quick authoring hint for you:
-       To add a new update, create a new <article class="post"> here and commit. -->
+  <div class="update">
+    <small>Feb 2026</small>
+    <p>Pre-production begins on next studio short film.</p>
+  </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" aria-labelledby="contact-title">
-  <h2 id="contact-title" class="section-title">Contact</h2>
+<section id="contact">
+  <h2>Contact</h2>  
+  <p>For collaborations, commissions, festivals, or institutional enquiries.</p>
 
-  <div id="contact" style="max-width:760px;margin:auto">
-    <p style="color:var(--muted)">For collaborations, commissions, press, and investor enquiries.</p>
-
-    <form id="contact-form" aria-label="Contact form">
-      <input id="cf-name" name="name" type="text" placeholder="Your name" required />
-      <input id="cf-email" name="email" type="email" placeholder="Email" required />
-      <textarea id="cf-message" name="message" rows="5" placeholder="Tell us what you're building" required></textarea>
-      <button type="submit" aria-label="Send message">Send message</button>
-    </form>
-
-    <div class="socials" role="list">
-      <a href="https://youtube.com/@lesjones-tt2dy" target="_blank" aria-label="YouTube"><i data-feather="youtube"></i></a>
-      <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i data-feather="instagram"></i></a>
-      <a href="mailto:contact@angelworx.co.za" aria-label="Email"><i data-feather="mail"></i></a>
-    </div>
+  <div class="socials">
+    <a href="https://youtube.com/@lesjones-tt2dy" target="_blank">YouTube</a>
+    <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+    <a href="mailto:contact@angelworx.co.za">Email</a>
   </div>
 </section>
 
 <footer>
-  © 2026 AngelWorx — Built with intent.
+  © 2026 AngelWorx — Built with intention.
 </footer>
 
-<script>
-  // render feather icons
-  feather.replace();
-
-  // ensure nav anchor to contact scrolls and focuses the message field
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', (ev)=>{
-      const targetId = a.getAttribute('href').slice(1);
-      if(!targetId) return;
-      const el = document.getElementById(targetId);
-      if(el){
-        ev.preventDefault();
-        el.scrollIntoView({behavior:'smooth', block:'center'});
-        // if contact, focus textarea after scroll
-        if(targetId === 'contact'){
-          setTimeout(()=>{ const ta = document.getElementById('cf-message'); if(ta) ta.focus(); }, 550);
-        }
-      }
-    });
-  });
-
-  // contact form (placeholder) — replace when ready to connect backend
-  document.getElementById('contact-form').addEventListener('submit', function(e){
-    e.preventDefault();
-    // simple validation message
-    alert('Thanks — message received. We will respond shortly.');
-    e.target.reset();
-  });
-
-  // keyboard accessible service cards
-  document.querySelectorAll('.service-card').forEach(card=>{
-    card.addEventListener('keydown', e=>{
-      if(e.key === 'Enter' || e.key === ' '){
-        e.preventDefault();
-        card.classList.toggle('active');
-        // small visual response
-        card.style.transform = card.style.transform ? '' : 'translateY(-6px)';
-      }
-    });
-  });
-
-  // small safety: if logo fails to load (no extension), try .jpg next (handled inline via onerror)
-</script>
 </body>
 </html>
