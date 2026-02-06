@@ -1,234 +1,374 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AngelWorx — Film & Production</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AngelWorx — Film & Production Studio</title>
 
-<link rel="icon" href="assets/favicon.ico">
+<link rel="icon" href="assets/favicon.ico" />
 
 <style>
-  :root {
-    --bg: #fff;
-    --ink: #0e1116;
-    --muted: #777;
-    --border: rgba(0,0,0,0.1);
-    --accent: #1f3cff; /* crisp cinematic blue for elements */
-  }
+:root {
+  --ink: #0e0e11;
+  --paper: #ffffff;
+  --cyan: #00c2ff;
+  --red: #e63946;
+  --blue: #3a86ff;
+  --muted: #6b6b76;
+  --line: #e6e6eb;
+}
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ---------------- HEADER ---------------- */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand img {
+  height: 42px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.nav-links a:hover {
+  color: var(--blue);
+}
+
+/* ---------------- HERO ---------------- */
+
+.hero {
+  max-width: 1200px;
+  margin: auto;
+  padding: 6rem 1.5rem 4rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.hero .tagline {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+.hero .manifesto {
+  margin-top: 2rem;
+  font-size: 1.25rem;
+  font-style: italic;
+}
+
+.hero .manifesto span {
+  color: var(--cyan);
+}
+
+/* ---------------- FEATURED VIDEO ---------------- */
+
+.video-feature {
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+}
+
+.video-frame {
+  position: relative;
+  padding-top: 56.25%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+}
+
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------------- SECTIONS ---------------- */
+
+section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 4rem 1.5rem;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+/* ---------------- GALLERY ---------------- */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.gallery-item img {
+  width: 100%;
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+  color: white;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* ---------------- SERVICES ---------------- */
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.service {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 2rem;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.service:hover {
+  transform: translateY(-4px);
+  border-color: var(--cyan);
+}
+
+.service h3 {
+  margin-bottom: 0.5rem;
+}
+
+/* ---------------- CURRENT WORK ---------------- */
+
+.work-item {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.work-item span {
+  color: var(--muted);
+}
+
+/* ---------------- CONTACT ---------------- */
+
+.contact {
+  background: #f7f7fa;
+  border-radius: 20px;
+}
+
+.socials {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.socials a {
+  font-weight: 500;
+  color: var(--blue);
+}
+
+/* ---------------- FOOTER ---------------- */
+
+footer {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ---------------- REDUCED MOTION ---------------- */
+
+@media (prefers-reduced-motion: reduce) {
   * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    animation: none !important;
+    transition: none !important;
   }
-
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    line-height: 1.6;
-  }
-  a { text-decoration: none; color: inherit; }
-
-  /* NAV */
-  nav {
-    position: sticky;
-    top: 0;
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--border);
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 100;
-  }
-  nav img { height: 42px; }
-  nav .links { display: flex; gap: 1.75rem; font-size: .95rem; color: var(--muted); }
-  nav .links a:hover { color: var(--accent); }
-
-  /* HERO */
-  .hero {
-    text-align: center;
-    padding: 8rem 1rem 5rem;
-    max-width: 960px;
-    margin: auto;
-  }
-  .hero h1 {
-    font-size: clamp(2.5rem, 5vw, 3.4rem);
-    font-weight: 700;
-  }
-  .hero p { margin-top: .8rem; font-size: 1.1rem; color: var(--muted); }
-  .hero .mantra { margin-top: 1.4rem; font-style: italic; }
-
-  /* FULL BLEED FEATURE */
-  .feature {
-    margin: 3rem 0;
-  }
-  .feature img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-  }
-
-  /* GALLERY GRID */
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-  }
-  .gallery img {
-    width: 100%;
-    border-radius: 10px;
-    object-fit: cover;
-    transition: transform .3s ease;
-  }
-  .gallery img:hover { transform: scale(1.03); }
-
-  /* PROJECTS */
-  .projects .project {
-    border-top: 1px solid var(--border);
-    padding-top: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  .projects strong { font-size: 1.1rem; }
-
-  /* SERVICES */
-  .services {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-    gap: 1.2rem;
-    margin-top: 1rem;
-  }
-  .service-card {
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.4rem;
-    font-weight: 600;
-    transition: transform .3s ease;
-  }
-  .service-card:hover { transform: translateY(-4px); border-color: var(--accent); }
-
-  /* UPDATES */
-  .updates .update {
-    border-left: 3px solid var(--accent);
-    padding-left: 1rem;
-    margin-bottom: 1rem;
-  }
-  .updates small { color: var(--muted); font-size: .9rem; }
-
-  /* CONTACT */
-  #contact p { color: var(--muted); margin-bottom: 1rem; }
-  .socials {
-    display: flex;
-    gap: 1rem;
-  }
-  .socials a {
-    padding: .6rem;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    font-size: 1.1rem;
-    color: var(--muted);
-  }
-  .socials a:hover { background: var(--accent); color: #fff; border-color: transparent; }
-
-  footer {
-    text-align: center;
-    padding: 2.5rem 1rem;
-    color: var(--muted);
-    font-size: .9rem;
-  }
+}
 </style>
 </head>
 
 <body>
 
-<nav>
-  <img src="assets/logo.png" alt="AngelWorx Logo">
-  <div class="links">
-    <a href="#work">Work</a>
-    <a href="#services">Studio</a>
-    <a href="#updates">Updates</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
+<header>
+  <nav class="nav">
+    <div class="brand">
+      <img src="assets/Gemini_Generated_Image_3as9hz3as9hz3as9" alt="AngelWorx logo">
+    </div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
 
 <section class="hero">
   <h1>AngelWorx</h1>
-  <p>Film & Production Studio</p>
-  <p class="mantra">We don’t chase attention. We frame it.</p>
+  <p class="tagline">Film & Production Studio</p>
+
+  <p class="manifesto">
+    “We don’t chase trends.  
+    <span>We build worlds.</span>  
+    We let the frame speak.”
+  </p>
 </section>
 
-<!-- FEATURED FULL BLEED -->
-<div class="feature">
-  <img src="assets/DSC_0125.JPG" alt="Featured production image">
-</div>
+<section class="video-feature">
+  <div class="video-frame">
+    <iframe 
+      src="https://www.youtube.com/embed/VIDEO_ID_HERE"
+      title="AngelWorx Featured Reel"
+      frameborder="0"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Selected Work</h2>
+
+  <div class="gallery">
+    <div class="gallery-item">
+      <img src="assets/DSC_0125.JPG" alt="AngelWorx production still">
+      <div class="gallery-overlay">
+        <strong>Highveld Hustlers</strong>
+        <span>Pilot</span>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="work">
-  <h2>Selected Gallery</h2>
-  <div class="gallery">
-    <img src="assets/DSC_0125.JPG" alt="Production still 1">
-    <img src="assets/poster2.jpg" alt="Production still 2">
-    <img src="assets/poster3.jpg" alt="Production still 3">
-  </div>
-</section>
+  <h2 class="section-title">Current Projects</h2>
 
-<section class="projects" id="projects">
-  <h2>Current Projects</h2>
-
-  <div class="project">
-    <strong>Highveld Hustlers — Pilot</strong>
-    <p>Authentic narrative rooted in locality and rhythm.</p>
+  <div class="work-item">
+    <strong>Highveld Hustlers</strong><br />
+    <span>Television Pilot</span>
   </div>
 
-  <div class="project">
-    <strong>The Last Will — Short Film</strong>
-    <p>Exploring legacy through quiet, meticulous framing.</p>
+  <div class="work-item">
+    <strong>The Last Will</strong><br />
+    <span>Short Film</span>
   </div>
 </section>
 
 <section id="services">
-  <h2>Studio Capabilities</h2>
+  <h2 class="section-title">What We Do</h2>
+
   <div class="services">
-    <div class="service-card">Film Production</div>
-    <div class="service-card">Documentary</div>
-    <div class="service-card">Animation & Motion Design</div>
-    <div class="service-card">Post-Production</div>
-    <div class="service-card">Photography</div>
-    <div class="service-card">Location Scouting</div>
-    <div class="service-card">Creative Direction</div>
+    <div class="service">
+      <h3>Film Production</h3>
+      <p>From concept to final delivery — narrative, commercial, and experimental.</p>
+    </div>
+    <div class="service">
+      <h3>Animation</h3>
+      <p>2D, 3D, and hybrid animation for film, brands, and digital platforms.</p>
+    </div>
+    <div class="service">
+      <h3>Location Scouting</h3>
+      <p>Authentic locations with cinematic potential, logistics handled.</p>
+    </div>
+    <div class="service">
+      <h3>Post Production</h3>
+      <p>Editing, grading, sound, and finishing with restraint and taste.</p>
+    </div>
   </div>
 </section>
 
-<section class="updates" id="updates">
-  <h2>Updates</h2>
+<section id="contact" class="contact">
+  <h2 class="section-title">Contact & Updates</h2>
 
-  <div class="update">
-    <small>March 2026</small>
-    <p>AngelWorx joins the March to the DTIC — posters distributed, voices amplified.</p>
-  </div>
-
-  <div class="update">
-    <small>Feb 2026</small>
-    <p>Pre-production begins on next studio short film.</p>
-  </div>
-</section>
-
-<section id="contact">
-  <h2>Contact</h2>  
-  <p>For collaborations, commissions, festivals, or institutional enquiries.</p>
+  <p>
+    Studio updates, releases, and behind-the-scenes moments.
+  </p>
 
   <div class="socials">
     <a href="https://youtube.com/@lesjones-tt2dy" target="_blank">YouTube</a>
-    <a href="https://www.instagram.com/" target="_blank">Instagram</a>
-    <a href="mailto:contact@angelworx.co.za">Email</a>
+    <a href="https://instagram.com" target="_blank">Instagram</a>
+    <a href="mailto:info@angelworx.co.za">Email</a>
   </div>
 </section>
 
+</main>
+
 <footer>
-  © 2026 AngelWorx — Built with intention.
+  © 2026 AngelWorx. Stories that move culture.
 </footer>
 
 </body>
