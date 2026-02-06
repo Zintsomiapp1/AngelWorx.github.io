@@ -1,274 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AngelWorx — Film & Production</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AngelWorx — Film & Production</title>
 
-<link rel="icon" href="assets/favicon.ico">
-<script src="https://unpkg.com/feather-icons"></script>
+  <!-- Icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-}
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.ico" />
 
-body {
-  background: rgb(255,255,255);
-  color: rgb(15,15,18);
-  line-height: 1.6;
-}
+  <style>
+    :root {
+      --bg: #ffffff;
+      --ink: #0b0e14;
+      --muted: #6b7280;
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
+      /* Modern RGB palette */
+      --cyan: #00e5ff;
+      --red: #ff2d2d;
+      --blue: #1f3cff;
 
-/* NAV */
-header {
-  position: sticky;
-  top: 0;
-  background: rgba(255,255,255,0.9);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid rgb(235,235,238);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.2rem 2.5rem;
-  z-index: 100;
-}
+      --glass: rgba(255,255,255,0.7);
+      --border: rgba(0,0,0,0.08);
+    }
 
-.logo {
-  height: 44px;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
 
-nav {
-  display: flex;
-  gap: 2rem;
-}
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
 
-nav a {
-  font-weight: 500;
-  font-size: 0.95rem;
-  color: rgb(110,110,115);
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-nav a:hover {
-  color: rgb(15,15,18);
-}
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-/* HERO */
-.hero {
-  padding: 8rem 2rem 6rem;
-  max-width: 1100px;
-  margin: auto;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
 
-.hero h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-}
+    .brand img {
+      height: 36px;
+      width: auto;
+    }
 
-.hero p {
-  margin-top: 1.5rem;
-  max-width: 640px;
-  font-size: 1.2rem;
-  color: rgb(110,110,115);
-}
+    nav ul {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      font-size: 0.95rem;
+    }
 
-.hero .accent {
-  color: rgb(36,99,235);
-}
+    nav ul a:hover {
+      color: var(--blue);
+    }
 
-/* SECTIONS */
-section {
-  padding: 6rem 2rem;
-  max-width: 1100px;
-  margin: auto;
-}
+    /* HERO */
+    header {
+      padding: 7rem 2rem 5rem;
+      max-width: 1200px;
+      margin: auto;
+    }
 
-.section-title {
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 2.5rem;
-}
+    header h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
 
-/* GALLERY */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2.5rem;
-}
+    header p.quote {
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
 
-.gallery img {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-  transition: transform 0.4s ease;
-}
+    header h2 {
+      font-weight: 400;
+      max-width: 700px;
+      color: #111827;
+    }
 
-.gallery img:hover {
-  transform: translateY(-6px);
-}
+    .hero-accent {
+      background: linear-gradient(90deg, var(--cyan), var(--blue), var(--red));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-/* PROJECTS */
-.project {
-  padding: 2rem;
-  border: 1px solid rgb(235,235,238);
-  border-radius: 14px;
-  margin-bottom: 1.5rem;
-}
+    /* SECTIONS */
+    section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
 
-.project span {
-  color: rgb(110,110,115);
-  font-size: 0.9rem;
-}
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
 
-/* SERVICES */
-.services {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
-}
+    /* GALLERY */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
 
-.service {
-  padding: 2rem;
-  border-radius: 14px;
-  background: rgb(248,248,250);
-  font-weight: 500;
-}
+    .gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      transition: transform 0.4s ease;
+    }
 
-/* CONTACT */
-#contact {
-  background: rgb(248,248,250);
-  border-radius: 20px;
-  padding: 3.5rem;
-}
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
 
-form {
-  display: grid;
-  gap: 1rem;
-}
+    /* PROJECTS */
+    .project {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      background: #fafafa;
+    }
 
-input, textarea {
-  padding: 0.9rem;
-  border-radius: 10px;
-  border: 1px solid rgb(220,220,225);
-  font-size: 0.95rem;
-}
+    .project h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
 
-button {
-  margin-top: 1rem;
-  padding: 0.9rem;
-  border-radius: 12px;
-  border: none;
-  background: rgb(36,99,235);
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-}
+    /* SERVICES */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
 
-/* FOOTER */
-footer {
-  padding: 4rem 2rem;
-  text-align: center;
-  color: rgb(110,110,115);
-}
+    .service-card {
+      padding: 2rem;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-.socials {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-}
-</style>
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    /* BLOG / STATUS */
+    .post {
+      border-left: 4px solid var(--blue);
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .post span {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* CONTACT */
+    .socials {
+      display: flex;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .socials a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .socials a:hover {
+      background: var(--blue);
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <img src="assets/logo.png" alt="AngelWorx Logo" class="logo">
-  <nav>
-    <a href="#work">Work</a>
-    <a href="#projects">Projects</a>
-    <a href="#services">Capabilities</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+<nav>
+  <div class="brand">
+    <img src="assets/Gemini_Generated_Image_3as9hz3as9hz3as9" alt="AngelWorx Logo">
+    <span>AngelWorx</span>
+  </div>
 
-<section class="hero">
+  <ul>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#updates">Updates</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header>
+  <p class="quote">“Build in silence. Let the frame make the noise.”</p>
   <h1>
-    We don’t chase attention.<br>
-    <span class="accent">We frame it.</span>
+    <span class="hero-accent">Stories that move culture.</span><br>
+    Film. Image. Intent.
   </h1>
-  <p>
-    AngelWorx is a film and production studio focused on
-    intentional storytelling, visual restraint, and culture-moving work.
-  </p>
-</section>
+  <h2>
+    AngelWorx is a modern film & production studio focused on bold visuals,
+    grounded storytelling, and work that travels beyond the screen.
+  </h2>
+</header>
 
 <section id="work">
   <h3 class="section-title">Selected Work</h3>
+
   <div class="gallery">
-    <img src="assets/DSC_0125.JPG" alt="AngelWorx Production Still">
+    <img src="assets/DSC_0125.JPG" alt="March to the DTIC poster">
+    <img src="assets/DSC_0125.JPG" alt="Production still">
+    <img src="assets/DSC_0125.JPG" alt="Campaign visual">
   </div>
 </section>
 
-<section id="projects">
-  <h3 class="section-title">Current Projects</h3>
+<section>
   <div class="project">
-    <strong>Highveld Hustlers</strong><br>
-    <span>Pilot</span>
+    <h4>Highveld Hustlers — Pilot</h4>
+    <p>Raw street energy. Character-driven. Built for culture, not algorithms.</p>
   </div>
+
   <div class="project">
-    <strong>The Last Will</strong><br>
-    <span>Short Film</span>
+    <h4>The Last Will — Short Film</h4>
+    <p>An intimate look at legacy, silence, and consequence.</p>
   </div>
 </section>
 
 <section id="services">
-  <h3 class="section-title">Film Production Services</h3>
+  <h3 class="section-title">Services</h3>
+
   <div class="services">
-    <div class="service">Concept & Development</div>
-    <div class="service">Film & Television Production</div>
-    <div class="service">Cinematography</div>
-    <div class="service">Post-Production</div>
-    <div class="service">Casting & Talent</div>
-    <div class="service">Photography</div>
+    <div class="service-card">Film Production (Short / Long-form)</div>
+    <div class="service-card">Photography & Visual Campaigns</div>
+    <div class="service-card">Post-Production & Editing</div>
+    <div class="service-card">Creative Direction</div>
+    <div class="service-card">Documentary & Cultural Work</div>
+  </div>
+</section>
+
+<section id="updates">
+  <h3 class="section-title">What’s Happening</h3>
+
+  <div class="post">
+    <span>March 2026</span>
+    <p>AngelWorx joins the march to the DTIC — advocating for fair treatment of film workers and sustainable creative economies.</p>
+  </div>
+
+  <div class="post">
+    <span>February 2026</span>
+    <p>Pre-production begins on our next short. Quiet now. Loud later.</p>
   </div>
 </section>
 
 <section id="contact">
-  <h3 class="section-title">Contact</h3>
-  <form>
-    <input type="text" placeholder="Name" required>
-    <input type="email" placeholder="Email" required>
-    <textarea rows="4" placeholder="Tell us what you’re building"></textarea>
-    <button type="submit">Send</button>
-  </form>
+  <h3 class="section-title">Connect</h3>
+
+  <p>For collaborations, commissions, or serious conversations.</p>
+
+  <div class="socials">
+    <a href="https://youtube.com/@lesjones-tt2dy" target="_blank" aria-label="YouTube">
+      <i data-feather="youtube"></i>
+    </a>
+
+    <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
+      <i data-feather="instagram"></i>
+    </a>
+
+    <a href="mailto:contact@angelworx.co.za" aria-label="Email">
+      <i data-feather="mail"></i>
+    </a>
+  </div>
 </section>
 
 <footer>
-  © 2026 AngelWorx
-  <div class="socials">
-    <a href="#"><i data-feather="instagram"></i></a>
-    <a href="#"><i data-feather="youtube"></i></a>
-    <a href="#"><i data-feather="video"></i></a>
-  </div>
+  © 2026 AngelWorx. Built with intent.
 </footer>
 
 <script>
-feather.replace();
-
-document.querySelector("form").addEventListener("submit", e => {
-  e.preventDefault();
-  alert("Message received.");
-  e.target.reset();
-});
+  feather.replace();
 </script>
 
 </body>
