@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AngelWorx — Film & Production</title>
   <meta name="description" content="AngelWorx is a film and production studio crafting cinematic stories, striking visuals, and premium motion work." />
+
+  <!-- Favicons & manifest -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+  <link rel="manifest" href="/assets/site.webmanifest">
+  <link rel="mask-icon" href="/assets/favicon-32x32.png" color="#9aa7ff">
+  <link rel="shortcut icon" href="/assets/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="AngelWorx — Film & Production" />
+  <meta property="og:description" content="AngelWorx is a film and production studio crafting cinematic stories, striking visuals, and premium motion work." />
+  <meta property="og:image" content="/assets/logo.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,14 +60,26 @@
       display:flex;
       justify-content:space-between;
       align-items:center;
-      padding:16px 0 32px;
+      padding:12px 0 28px;
     }
 
     .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .logo img{
+      height:44px;
+      width:auto;
+      display:block;
+    }
+
+    .site-title{
       font-family:'Playfair Display',serif;
       font-weight:700;
       letter-spacing:1px;
-      font-size:22px;
+      font-size:20px;
     }
 
     nav a{
@@ -151,6 +180,14 @@
       justify-content:center;
       font-size:13px;
       color:var(--muted);
+      overflow:hidden;
+    }
+
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
     }
 
     .card h3{
@@ -190,6 +227,25 @@
       color:var(--muted);
     }
 
+    /* CURRENT WORK */
+    .current-list{
+      max-width:920px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:20px;
+      align-items:start;
+    }
+    .project-status{
+      display:inline-block;
+      margin-top:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:var(--accent);
+      color:var(--fg);
+      font-size:13px;
+    }
+
     /* CONTACT */
     .contact{
       text-align:center;
@@ -214,6 +270,7 @@
     @media (max-width:700px){
       nav{display:none}
       .hero{padding:90px 0 110px}
+      .site-title{display:none}
     }
   </style>
 </head>
@@ -221,9 +278,13 @@
   <div class="container">
 
     <header>
-      <div class="logo">AngelWorx</div>
-      <nav>
+      <a href="/" class="logo" aria-label="AngelWorx home">
+        <img src="/assets/logo.png" srcset="/assets/logo.png 1x" alt="AngelWorx logo">
+        <span class="site-title">AngelWorx</span>
+      </a>
+      <nav aria-label="Main navigation">
         <a href="#work">Work</a>
+        <a href="#current">Current</a>
         <a href="#services">Services</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
@@ -231,9 +292,9 @@
     </header>
 
     <main>
-      <section class="hero">
-        <div class="halo"></div>
-        <h1>Where stories ascend.</h1>
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="halo" aria-hidden="true"></div>
+        <h1 id="hero-heading">Where stories ascend.</h1>
         <p>AngelWorx is a film and production studio creating cinematic worlds, striking imagery, and work that feels elevated, intentional, and timeless.</p>
         <div class="cta">
           <a href="#work" class="btn primary">View Work</a>
@@ -243,22 +304,47 @@
 
       <section id="work">
         <h2>Selected Work</h2>
-        <div class="grid">
-          <div class="card">
-            <div class="thumb">Film / Short</div>
-            <h3>Short Film Title</h3>
-            <p>Cinematic storytelling focused on mood, symbolism, and emotional weight.</p>
-          </div>
-          <div class="card">
-            <div class="thumb">Photography</div>
-            <h3>Visual Series</h3>
-            <p>Still imagery designed with film language and editorial composition.</p>
-          </div>
-          <div class="card">
-            <div class="thumb">Commercial</div>
-            <h3>Brand Film</h3>
-            <p>Premium visual communication for modern brands and platforms.</p>
-          </div>
+        <div class="grid" role="list">
+          <article class="card" role="listitem" aria-labelledby="work-1-title">
+            <div class="thumb" aria-hidden="false">
+              <img src="https://images.unsplash.com/photo-1507120410856-1f35574c3b45?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=example" alt="Cinematic frame from Ascension short film" loading="lazy">
+            </div>
+            <h3 id="work-1-title">Ascension — Short Film (2024)</h3>
+            <p>A measured short exploring memory and ritual through quiet, cinematic frames. Director: L. Hartman — DOP: K. Reyes.</p>
+          </article>
+
+          <article class="card" role="listitem" aria-labelledby="work-2-title">
+            <div class="thumb">
+              <img src="https://images.unsplash.com/photo-1503264116251-35a269479413?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=example" alt="Portrait series frame — Silver Hour" loading="lazy">
+            </div>
+            <h3 id="work-2-title">Silver Hour — Visual Series (2023)</h3>
+            <p>Stills series about light and atmosphere for editorial projects and gallery shows.</p>
+          </article>
+
+          <article class="card" role="listitem" aria-labelledby="work-3-title">
+            <div class="thumb">
+              <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=example" alt="Brand film still" loading="lazy">
+            </div>
+            <h3 id="work-3-title">Elevate — Brand Film (2025)</h3>
+            <p>Premium brand film produced for Elevate Co., focused on craft, makers, and tactile storytelling.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="current">
+        <h2>Current Work</h2>
+        <div class="current-list" role="list">
+          <article class="card" role="listitem" aria-labelledby="current-1-title">
+            <h3 id="current-1-title">Highveld Hustlers — Pilot</h3>
+            <p>A character-driven pilot centered on life and grit in the Highveld. We're currently in production on the pilot episode, focusing on establishing tone, casting, and principal photography.</p>
+            <span class="project-status" aria-hidden="false">In production — Pilot</span>
+          </article>
+
+          <article class="card" role="listitem" aria-labelledby="current-2-title">
+            <h3 id="current-2-title">The Last Will — Short Film</h3>
+            <p>A short film exploring legacy and consequence through intimate, atmospheric storytelling. We're actively developing the shoot schedule, locations, and casting for the short.</p>
+            <span class="project-status" aria-hidden="false">In development — Short Film</span>
+          </article>
         </div>
       </section>
 
@@ -267,10 +353,10 @@
         <div class="services">
           <p>We operate across concept, production, and post — delivering polished work with intention and clarity.</p>
           <div class="service-list">
-            <div class="card"><h3>Film Production</h3><p>From concept to final cut.</p></div>
-            <div class="card"><h3>Photography</h3><p>Editorial, portrait, and cinematic stills.</p></div>
-            <div class="card"><h3>Editing & Post</h3><p>Rhythm, tone, and narrative control.</p></div>
-            <div class="card"><h3>Creative Direction</h3><p>Visual language and story cohesion.</p></div>
+            <div class="card" aria-labelledby="service-1"><h3 id="service-1">Film Production</h3><p>Full production pipelines: development, shooting, and delivery. Crew hiring, location scouting, and production management.</p></div>
+            <div class="card" aria-labelledby="service-2"><h3 id="service-2">Photography</h3><p>Editorial, commercial, and cinematic stills, with on-location and studio capability.</p></div>
+            <div class="card" aria-labelledby="service-3"><h3 id="service-3">Editing & Post</h3><p>Story-driven editing, color grading, and sound design to shape tone and rhythm.</p></div>
+            <div class="card" aria-labelledby="service-4"><h3 id="service-4">Creative Direction</h3><p>Concept, visual language, and art direction to maintain narrative cohesion across deliverables.</p></div>
           </div>
         </div>
       </section>
@@ -278,16 +364,17 @@
       <section id="about">
         <h2>About AngelWorx</h2>
         <div class="about">
-          <p>AngelWorx was formed around the belief that visual work should feel intentional, elevated, and emotionally resonant. We approach every project with restraint, clarity, and a strong cinematic eye.</p>
+          <p>AngelWorx was formed around the belief that visual work should feel intentional, elevated, and emotionally resonant. We approach every project with restraint, clarity, and a strong cinematic sensibility. Our team blends narrative directing, photography, and thoughtful post-production to craft pieces that linger.</p>
+          <p>We collaborate with brands, agencies, and independent artists. Whether the brief calls for a quiet short or a high-energy commercial, we prioritize composition, lighting, and editorial choices that serve the story first.</p>
         </div>
       </section>
 
       <section id="contact">
         <h2>Contact</h2>
         <div class="contact">
-          <a href="mailto:hello@angelworx.com">hello@angelworx.com</a>
-          <a href="#">Instagram</a>
-          <a href="#">Vimeo</a>
+          <a href="mailto:hello@angelworx.com" aria-label="Email AngelWorx">hello@angelworx.com</a>
+          <a href="https://instagram.com/angelworx" target="_blank" rel="noopener" aria-label="AngelWorx on Instagram">Instagram</a>
+          <a href="https://vimeo.com/angelworx" target="_blank" rel="noopener" aria-label="AngelWorx on Vimeo">Vimeo</a>
         </div>
       </section>
     </main>
@@ -299,7 +386,11 @@
   </div>
 
   <script>
+    // current year and small smooth-scroll enhancement
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // enable smooth scroll for in-page anchors (keeps browser default for accessibility)
+    document.documentElement.style.scrollBehavior = 'smooth';
   </script>
 </body>
 </html>
