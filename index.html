@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AngelWorx | Film & Production</title>
 <link rel="icon" href="assets/favicon.ico">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.10.0/dist/supabase.min.js"></script>
 <style>
   /* Reset */
   * { margin:0; padding:0; box-sizing:border-box; font-family:'Helvetica Neue', sans-serif; }
@@ -98,7 +99,7 @@
 
 <section id="auditions">
   <h3 class="section-title">Audition Tapes & Submissions</h3>
-  <form action="https://formspree.io/f/your-endpoint" method="POST">
+  <form>
     <input type="text" name="name" placeholder="Full Name" required>
     <input type="email" name="email" placeholder="Email" required>
     <input type="text" name="role" placeholder="Role">
@@ -120,11 +121,39 @@
 
 <section id="register" class="register">
   <h3 class="section-title">Register & Next Steps</h3>
-  <p>We recommend using Supabase or Firebase for auth and user management.</p>
+  <p>We recommend using Supabase for auth and user management.</p>
   <a href="#auditions">Get Started</a>
 </section>
 
 <script>
+  // Initialize Supabase
+  const supabaseUrl = "https://YOUR_PROJECT.supabase.co"; // replace with your Supabase URL
+  const supabaseKey = "sb_publishable_ttoUnyN4GWfMIy8nt2-abA_jprjYsTP"; // anon key only
+  const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+  // Form submission
+  const form = document.querySelector("form");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = form.name.value;
+    const email = form.email.value;
+    const role = form.role.value;
+    const portfolio = form.portfolio.value;
+    const intro = form.intro.value;
+
+    const { error } = await supabase.from("auditions").insert([
+      { name, email, role, portfolio, intro }
+    ]);
+
+    if(error){
+      alert("Submission failed: " + error.message);
+    } else {
+      alert("Submission successful!");
+      form.reset();
+    }
+  });
+
   // Keyboard accessibility for service cards
   document.querySelectorAll('.service-card').forEach(card => {
     card.addEventListener('keydown', e => {
