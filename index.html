@@ -4,86 +4,212 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AngelWorx | Film & Production</title>
+
 <link rel="icon" href="assets/favicon.ico">
 <script src="https://unpkg.com/feather-icons"></script>
+
 <style>
-  /* Reset */
-  * { margin:0; padding:0; box-sizing:border-box; font-family:'Helvetica Neue', sans-serif; }
-  html { scroll-behavior: smooth; }
-  body { background:#fff; color:#111; line-height:1.6; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
 
-  a { color:inherit; text-decoration:none; }
+body {
+  background: #ffffff;
+  color: #111;
+  line-height: 1.6;
+}
 
-  /* Navbar/Logo */
-  header {
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:1rem 2rem;
-    background:#fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  header img.logo { height:50px; }
-  nav { display:flex; gap:1.5rem; }
-  nav a { font-weight:600; transition:0.3s; }
-  nav a:hover { color:#e67e22; }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
-  /* Hero */
-  .hero {
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:6rem 2rem;
-  }
-  .hero h1 { font-size:3rem; color:#1abc9c; margin-bottom:0.5rem; }
-  .hero p.sub { font-style:italic; color:#666; margin-bottom:1rem; font-size:1.2rem;}
-  .hero h2 { font-size:1.8rem; max-width:700px; margin-bottom:2rem;}
-  .cta-buttons { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; }
-  .cta-buttons a { padding:0.8rem 2rem; border-radius:30px; font-weight:600; color:#fff; background: linear-gradient(45deg,#1abc9c,#e67e22); transition:0.3s; }
-  .cta-buttons a:hover { opacity:0.85; }
+/* NAVBAR */
+header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #eee;
+  z-index: 100;
+}
 
-  /* Sections */
-  section { padding:5rem 2rem; max-width:1200px; margin:auto; }
-  h3.section-title { font-size:2rem; margin-bottom:2rem; text-align:center; color:#1abc9c; }
+.logo {
+  height: 46px;
+}
 
-  /* Gallery */
-  .gallery { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:2rem; }
-  .card { border-radius:15px; overflow:hidden; transition:0.3s; cursor:pointer; box-shadow:0 5px 20px rgba(0,0,0,0.05);}
-  .card img { width:100%; display:block; }
-  .card:hover { transform: scale(1.05); }
+nav {
+  display: flex;
+  gap: 1.5rem;
+}
 
-  /* Projects */
-  .work-item { display:flex; justify-content:space-between; align-items:center; background: #f8f8f8; padding:1rem; border-radius:10px; margin-bottom:1rem; transition:0.3s; }
-  .work-item a { display:flex; align-items:center; gap:0.5rem; }
-  .work-item:hover { background: #f0f0f0; }
+nav a {
+  font-weight: 600;
+  color: #555;
+}
 
-  /* Services */
-  .services { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:2rem; }
-  .service-card { background:#f8f8f8; border-radius:15px; padding:2rem; text-align:center; cursor:pointer; transition:0.3s; }
-  .service-card:hover, .service-card:focus { transform:scale(1.05); background:#1abc9c; color:#fff; }
+nav a:hover {
+  color: #1abc9c;
+}
 
-  /* Contact */
-  #contact { background:#f0f0f0; border-radius:15px; padding:3rem; max-width:700px; margin:auto; }
-  form { display:flex; flex-direction:column; gap:1rem; }
-  input, textarea { padding:0.8rem; border-radius:8px; border:1px solid #ccc; }
-  input:focus, textarea:focus { outline:2px solid #1abc9c; }
-  button { padding:0.8rem; border:none; border-radius:8px; background: linear-gradient(45deg,#1abc9c,#e67e22); color:#fff; cursor:pointer; transition:0.3s; font-weight:600; }
-  button:hover { opacity:0.85; }
+/* HERO */
+.hero {
+  padding: 6rem 2rem;
+  text-align: center;
+}
 
-  /* Footer */
-  footer { text-align:center; padding:2rem; color:#666; display:flex; justify-content:center; gap:1rem; }
+.hero h1 {
+  font-size: 3.2rem;
+  color: #1abc9c;
+}
 
+.hero p {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.hero h2 {
+  margin: 2rem auto;
+  max-width: 720px;
+  font-size: 1.6rem;
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cta a {
+  padding: 0.8rem 2rem;
+  border-radius: 30px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(45deg, #1abc9c, #f39c12);
+}
+
+/* SECTIONS */
+section {
+  padding: 5rem 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+  color: #1abc9c;
+}
+
+/* GALLERY */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: transform 0.3s;
+}
+
+.card img {
+  width: 100%;
+  display: block;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* PROJECTS */
+.project {
+  background: #f7f7f7;
+  padding: 1.5rem;
+  border-radius: 14px;
+  margin-bottom: 1rem;
+}
+
+/* SERVICES */
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.service {
+  background: #f7f7f7;
+  padding: 2rem;
+  border-radius: 18px;
+  text-align: center;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.service:hover {
+  background: #1abc9c;
+  color: #fff;
+}
+
+/* CONTACT */
+#contact {
+  background: #f3f3f3;
+  border-radius: 20px;
+  padding: 3rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input, textarea {
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background: linear-gradient(45deg, #1abc9c, #f39c12);
+  color: #fff;
+  border: none;
+  padding: 0.9rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* FOOTER */
+footer {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
 </style>
 </head>
+
 <body>
 
 <header>
-  <img src="assets/Gemini_Generated_Image_3as9hz3as9hz3as9.jpg" alt="AngelWorx Logo" class="logo">
+  <img src="assets/logo.png" alt="AngelWorx Logo" class="logo">
   <nav>
     <a href="#gallery">Gallery</a>
     <a href="#projects">Projects</a>
@@ -94,86 +220,67 @@
 
 <section class="hero">
   <h1>AngelWorx</h1>
-  <p class="sub">Building stories frame by frame</p>
+  <p>Build in silence. Let the frame make the noise.</p>
   <h2>Modern visuals. Expensive taste. Stories that move culture.</h2>
-  <div class="cta-buttons">
+  <div class="cta">
     <a href="#gallery">View Work</a>
-    <a href="#contact">Get In Touch</a>
+    <a href="#contact">Contact Studio</a>
   </div>
 </section>
 
 <section id="gallery">
   <h3 class="section-title">Gallery</h3>
   <div class="gallery">
-    <div class="card"><img src="assets/DSC_0125.JPG" alt="Gallery Poster 1"></div>
-    <div class="card"><img src="assets/poster2.jpg" alt="Gallery Poster 2"></div>
-    <div class="card"><img src="assets/poster3.jpg" alt="Gallery Poster 3"></div>
+    <div class="card"><img src="assets/DSC_0125.JPG" alt="AngelWorx Work"></div>
   </div>
 </section>
 
 <section id="projects">
   <h3 class="section-title">Current Projects</h3>
-  <div class="work-item">
-    <span>Highveld Hustlers — Pilot</span>
-    <span>
-      <a href="https://www.instagram.com" target="_blank"><i data-feather="instagram"></i></a>
-      <a href="https://youtube.com" target="_blank"><i data-feather="youtube"></i></a>
-    </span>
-  </div>
-  <div class="work-item">
-    <span>The Last Will — Short Film</span>
-    <span>
-      <a href="https://vimeo.com" target="_blank"><i data-feather="video"></i></a>
-      <a href="https://twitter.com" target="_blank"><i data-feather="twitter"></i></a>
-    </span>
-  </div>
+  <div class="project">Highveld Hustlers — Pilot</div>
+  <div class="project">The Last Will — Short Film</div>
 </section>
 
 <section id="services">
-  <h3 class="section-title">Services</h3>
+  <h3 class="section-title">Film Production Services</h3>
   <div class="services">
-    <div class="service-card" tabindex="0">Film Production</div>
-    <div class="service-card" tabindex="0">Photography</div>
-    <div class="service-card" tabindex="0">Post Production</div>
-    <div class="service-card" tabindex="0">Casting & Talent</div>
+    <div class="service">Concept Development</div>
+    <div class="service">Film & TV Production</div>
+    <div class="service">Cinematography</div>
+    <div class="service">Post Production</div>
+    <div class="service">Casting & Talent</div>
+    <div class="service">Photography</div>
   </div>
 </section>
 
 <section id="contact">
   <h3 class="section-title">Contact Us</h3>
   <form>
-    <input type="text" name="name" placeholder="Full Name" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <textarea name="message" placeholder="Message" rows="4"></textarea>
+    <input type="text" placeholder="Name" required>
+    <input type="email" placeholder="Email" required>
+    <textarea rows="4" placeholder="Message"></textarea>
     <button type="submit">Send Message</button>
   </form>
+
+  <div class="socials">
+    <a href="#"><i data-feather="instagram"></i></a>
+    <a href="#"><i data-feather="youtube"></i></a>
+    <a href="#"><i data-feather="video"></i></a>
+  </div>
 </section>
 
 <footer>
-  <a href="https://www.instagram.com" target="_blank"><i data-feather="instagram"></i></a>
-  <a href="https://youtube.com" target="_blank"><i data-feather="youtube"></i></a>
-  <a href="https://vimeo.com" target="_blank"><i data-feather="video"></i></a>
+  © 2026 AngelWorx
 </footer>
 
 <script>
-  feather.replace();
+feather.replace();
 
-  // Temporary contact form
-  const form = document.querySelector("form");
-  form.addEventListener("submit", e => {
-    e.preventDefault();
-    alert("Thanks! We'll get back to you soon.");
-    form.reset();
-  });
-
-  // Keyboard accessibility for service cards
-  document.querySelectorAll('.service-card').forEach(card => {
-    card.addEventListener('keydown', e => {
-      if(e.key === "Enter" || e.key === " ") {
-        alert('Clicked on ' + card.textContent);
-      }
-    });
-  });
+document.querySelector("form").addEventListener("submit", e => {
+  e.preventDefault();
+  alert("Message sent. We'll be in touch.");
+  e.target.reset();
+});
 </script>
 
 </body>
