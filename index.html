@@ -13,18 +13,102 @@
   box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #111;
-  background: #fff;
+html {
+  scroll-behavior: smooth;
 }
 
-/* ---------------- CLOUD VIDEO ---------------- */
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #1a1a1a;
+  background: #000;
+  overflow-x: hidden;
+}
+
+/* ---------------- LOADING ANIMATION ---------------- */
+.intro-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+.intro-animation.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  animation: logoReveal 2s ease-out;
+}
+
+@keyframes logoReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.intro-logo img {
+  height: 120px;
+  width: auto;
+  animation: logoPulse 2s ease-out;
+}
+
+@keyframes logoPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.intro-logo h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  animation: textFadeIn 1.5s ease-out 0.3s both;
+}
+
+@keyframes textFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------------- CLOUD VIDEO BACKGROUND ---------------- */
 .clouds-bg {
   position: fixed;
-  inset: 0;
-  z-index: -2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
   overflow: hidden;
 }
 
@@ -32,134 +116,357 @@ html, body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.25;
+  opacity: 0.3;
 }
 
-/* White overlay to keep it premium */
+/* Gradient overlay for depth */
 .cloud-overlay {
   position: fixed;
-  inset: 0;
-  background: rgba(255,255,255,0.85);
-  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.92) 0%,
+    rgba(255,255,255,0.88) 50%,
+    rgba(255,255,255,0.92) 100%
+  );
+  z-index: 2;
+}
+
+/* Content wrapper */
+.content-wrapper {
+  position: relative;
+  z-index: 3;
 }
 
 /* ---------------- HEADER ---------------- */
 header {
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  z-index: 100;
+  padding: 20px 0;
+  animation: slideDown 0.6s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 48px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px 48px;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #000;
 }
 
 .logo img {
-  height: 42px;
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+nav {
+  display: flex;
+  gap: 40px;
+  align-items: center;
 }
 
 nav a {
-  margin-left: 28px;
   text-decoration: none;
-  color: #111;
+  color: #1a1a1a;
   font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  transition: color 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #000;
+  transition: width 0.3s ease;
+}
+
+nav a:hover {
+  color: #000;
+}
+
+nav a:hover::after {
+  width: 100%;
 }
 
 /* ---------------- HERO ---------------- */
 .hero {
-  padding: 120px 48px 80px;
-  max-width: 1100px;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 160px 48px 120px;
+  max-width: 1400px;
+  margin: 0 auto;
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero h1 {
-  font-size: clamp(2.8rem, 6vw, 4.5rem);
-  font-weight: 700;
-  line-height: 1.05;
-  margin-bottom: 16px;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 800;
+  line-height: 0.95;
+  margin-bottom: 32px;
+  letter-spacing: -0.04em;
+  color: #000;
 }
 
 .hero p.tagline {
-  font-size: 1.2rem;
-  color: #444;
-  margin-bottom: 12px;
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  color: #333;
+  margin-bottom: 16px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
 }
 
 .hero p.quote {
   font-style: italic;
   color: #666;
+  font-size: 1.1rem;
+  max-width: 600px;
+  line-height: 1.6;
+  margin: 0 auto;
 }
 
 /* ---------------- SECTIONS ---------------- */
 section {
-  padding: 96px 48px;
-  max-width: 1200px;
-  margin: auto;
+  padding: 120px 48px;
+  max-width: 1400px;
+  margin: 0 auto;
+  animation: fadeInUp 0.8s ease-out both;
 }
 
 section h2 {
-  font-size: 2.2rem;
-  margin-bottom: 32px;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  margin-bottom: 64px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #000;
+  text-align: center;
 }
 
 /* ---------------- GALLERY ---------------- */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  aspect-ratio: 16 / 10;
+  background: #f5f5f5;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
 }
 
 .gallery img {
   width: 100%;
-  border-radius: 12px;
+  height: 100%;
+  object-fit: cover;
   display: block;
+  transition: transform 0.6s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
 }
 
 /* ---------------- SERVICES ---------------- */
 .services {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 48px;
 }
 
 .service {
-  border-top: 1px solid #ddd;
-  padding-top: 16px;
+  border-left: 3px solid #000;
+  padding-left: 24px;
+  transition: transform 0.3s ease;
+  text-align: left;
+}
+
+.service:hover {
+  transform: translateX(8px);
 }
 
 .service h3 {
-  font-size: 1.1rem;
-  margin-bottom: 8px;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: -0.01em;
 }
 
 .service p {
   color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 /* ---------------- CONTACT ---------------- */
+#contact {
+  text-align: center;
+}
+
 .contact {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 20px;
+  align-items: center;
 }
 
 .contact a {
-  color: #111;
+  color: #1a1a1a;
   text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 12px 0;
+  border-bottom: 2px solid transparent;
+  display: inline-block;
+  width: fit-content;
+}
+
+.contact a:hover {
+  color: #000;
+  border-bottom-color: #000;
+  transform: translateX(8px);
 }
 
 /* ---------------- FOOTER ---------------- */
 footer {
-  padding: 40px 48px;
+  padding: 60px 48px 40px;
   font-size: 0.9rem;
-  color: #666;
+  color: #999;
+  text-align: center;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  background: rgba(255,255,255,0.5);
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 768px) {
+  .header-inner {
+    padding: 0 24px;
+  }
+
+  nav {
+    gap: 24px;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+  }
+
+  .hero {
+    padding: 100px 24px 80px;
+  }
+
+  section {
+    padding: 80px 24px;
+  }
+
+  section h2 {
+    margin-bottom: 48px;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .services {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .intro-logo img {
+    height: 80px;
+  }
+
+  .intro-logo h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Stagger animations for sections */
+#work {
+  animation-delay: 0.1s;
+}
+
+#services {
+  animation-delay: 0.2s;
+}
+
+#contact {
+  animation-delay: 0.3s;
 }
 </style>
 </head>
 
 <body>
+
+<!-- INTRO ANIMATION -->
+<div class="intro-animation" id="introAnimation">
+  <div class="intro-logo">
+    <img src="assets/Gemini_Generated_Image_3as9hz3as9hz3as9.png" alt="AngelWorx logo">
+    <h1>AngelWorx</h1>
+  </div>
+</div>
 
 <!-- CLOUD BACKGROUND -->
 <div class="clouds-bg">
@@ -169,72 +476,111 @@ footer {
 </div>
 <div class="cloud-overlay"></div>
 
-<!-- HEADER -->
-<header>
-  <div class="logo">
-    <img src="assets/Gemini_Generated_Image_3as9hz3as9hz3as9.png" alt="AngelWorx logo">
-    <strong>AngelWorx</strong>
-  </div>
-  <nav>
-    <a href="#work">Work</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+<!-- CONTENT WRAPPER -->
+<div class="content-wrapper">
 
-<!-- HERO -->
-<div class="hero">
-  <h1>We don’t chase.<br>We build.</h1>
-  <p class="tagline">Film. Animation. Culture.</p>
-  <p class="quote">“Build in silence. Let the frame make the noise.”</p>
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <img src="assets/Gemini_Generated_Image_3as9hz3as9hz3as9.png" alt="AngelWorx logo">
+        <strong>AngelWorx</strong>
+      </div>
+      <nav>
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>We don't chase.<br>We build.</h1>
+    <p class="tagline">Film. Animation. Culture.</p>
+    <p class="quote">"Build in silence. Let the frame make the noise."</p>
+  </div>
+
+  <!-- GALLERY -->
+  <section id="work">
+    <h2>Selected Work</h2>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="assets/DSC_0125.JPG" alt="AngelWorx work 1">
+      </div>
+      <div class="gallery-item">
+        <img src="assets/DSC_0125.JPG" alt="AngelWorx work 2">
+      </div>
+      <div class="gallery-item">
+        <img src="assets/DSC_0125.JPG" alt="AngelWorx work 3">
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <h2>What We Do</h2>
+    <div class="services">
+      <div class="service">
+        <h3>Film Production</h3>
+        <p>Short films, pilots, long-form storytelling.</p>
+      </div>
+      <div class="service">
+        <h3>Animation</h3>
+        <p>2D / 3D animation, motion design, visual storytelling.</p>
+      </div>
+      <div class="service">
+        <h3>Location Scouting</h3>
+        <p>Urban, rural, cinematic South African locations.</p>
+      </div>
+      <div class="service">
+        <h3>Post Production</h3>
+        <p>Editing, sound, color, finishing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact">
+      <a href="https://youtube.com/@lesjones-tt2dy" target="_blank">YouTube</a>
+      <a href="#" target="_blank">Instagram</a>
+      <a href="mailto:hello@angelworx.co">hello@angelworx.co</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 AngelWorx. All rights reserved.
+  </footer>
+
 </div>
 
-<!-- GALLERY -->
-<section id="work">
-  <h2>Selected Work</h2>
-  <div class="gallery">
-    <img src="assets/DSC_0125.JPG" alt="AngelWorx work">
-    <img src="assets/DSC_0125.JPG" alt="AngelWorx work">
-    <img src="assets/DSC_0125.JPG" alt="AngelWorx work">
-  </div>
-</section>
+<script>
+// Check if this is the first visit
+const hasVisited = sessionStorage.getItem('angelworx_visited');
 
-<!-- SERVICES -->
-<section id="services">
-  <h2>What We Do</h2>
-  <div class="services">
-    <div class="service">
-      <h3>Film Production</h3>
-      <p>Short films, pilots, long-form storytelling.</p>
-    </div>
-    <div class="service">
-      <h3>Animation</h3>
-      <p>2D / 3D animation, motion design, visual storytelling.</p>
-    </div>
-    <div class="service">
-      <h3>Location Scouting</h3>
-      <p>Urban, rural, cinematic South African locations.</p>
-    </div>
-    <div class="service">
-      <h3>Post Production</h3>
-      <p>Editing, sound, color, finishing.</p>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <h2>Contact</h2>
-  <div class="contact">
-    <a href="https://youtube.com/@lesjones-tt2dy" target="_blank">YouTube</a>
-    <a href="#" target="_blank">Instagram</a>
-    <a href="mailto:hello@angelworx.co">hello@angelworx.co</a>
-  </div>
-</section>
-
-<footer>
-  © 2026 AngelWorx. All rights reserved.
-</footer>
+if (!hasVisited) {
+  // First visit - show intro animation
+  const introAnimation = document.getElementById('introAnimation');
+  
+  // Hide intro after 2.5 seconds
+  setTimeout(() => {
+    introAnimation.classList.add('hidden');
+    
+    // Remove from DOM after animation completes
+    setTimeout(() => {
+      introAnimation.style.display = 'none';
+    }, 800);
+  }, 2500);
+  
+  // Mark as visited for this session
+  sessionStorage.setItem('angelworx_visited', 'true');
+} else {
+  // Not first visit - hide intro immediately
+  document.getElementById('introAnimation').style.display = 'none';
+}
+</script>
 
 </body>
 </html>
