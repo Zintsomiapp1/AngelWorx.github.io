@@ -20,7 +20,7 @@ html {
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #1a1a1a;
-  background: #000;
+  background: #4a7ba7;
   overflow-x: hidden;
 }
 
@@ -68,23 +68,8 @@ body {
   }
 }
 
-.intro-logo img {
-  height: 120px;
-  width: auto;
-  animation: logoPulse 2s ease-out;
-}
-
-@keyframes logoPulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-}
-
 .intro-logo h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   animation: textFadeIn 1.5s ease-out 0.3s both;
@@ -110,14 +95,14 @@ body {
   height: 100%;
   z-index: 1;
   overflow: hidden;
+  background: linear-gradient(to bottom, #5b9bd5, #87ceeb);
 }
 
 .clouds-bg video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.85;
-  filter: brightness(1.1) contrast(1.1);
+  opacity: 1;
 }
 
 /* Lighter overlay to show more clouds */
@@ -129,9 +114,9 @@ body {
   height: 100%;
   background: linear-gradient(
     to bottom,
-    rgba(30,60,100,0.3) 0%,
-    rgba(40,70,110,0.2) 50%,
-    rgba(30,60,100,0.3) 100%
+    rgba(30,60,100,0.15) 0%,
+    rgba(40,70,110,0.1) 50%,
+    rgba(30,60,100,0.15) 100%
   );
   z-index: 2;
   pointer-events: none;
@@ -229,14 +214,17 @@ nav a:hover::after {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 60px 48px 40px;
+  padding: 80px 48px 40px;
   animation: fadeInUp 1s ease-out 0.2s both;
 }
 
-.brand-logo img {
-  height: 160px;
-  width: auto;
-  filter: drop-shadow(0 4px 20px rgba(0,0,0,0.4));
+.brand-logo h1 {
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: #fff;
+  text-shadow: 0 6px 30px rgba(0,0,0,0.5);
+  text-transform: uppercase;
 }
 
 /* ---------------- HERO ---------------- */
@@ -450,11 +438,11 @@ footer {
   }
 
   .brand-logo {
-    padding: 40px 24px 30px;
+    padding: 60px 24px 30px;
   }
 
-  .brand-logo img {
-    height: 100px;
+  .brand-logo h1 {
+    font-size: 3rem;
   }
 
   .hero {
@@ -479,12 +467,8 @@ footer {
     gap: 32px;
   }
 
-  .intro-logo img {
-    height: 80px;
-  }
-
   .intro-logo h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 }
 
@@ -508,15 +492,15 @@ footer {
 <!-- INTRO ANIMATION -->
 <div class="intro-animation" id="introAnimation">
   <div class="intro-logo">
-    <img src="assets/Gemini_Generated_Image_3as9hz3as9hz3as9.png" alt="AngelWorx logo">
     <h1>AngelWorx</h1>
   </div>
 </div>
 
 <!-- CLOUD BACKGROUND -->
 <div class="clouds-bg">
-  <video autoplay muted loop playsinline>
+  <video autoplay muted loop playsinline id="cloudVideo">
     <source src="assets/clouds.mp4" type="video/mp4">
+    Your browser does not support the video tag.
   </video>
 </div>
 <div class="cloud-overlay"></div>
@@ -540,7 +524,7 @@ footer {
 
   <!-- BRAND LOGO -->
   <div class="brand-logo">
-    <img src="assets/Gemini_Generated_Image_3as9hz3as9hz3as9.png" alt="AngelWorx">
+    <h1>ANGELWORX</h1>
   </div>
 
   <!-- HERO -->
@@ -629,6 +613,15 @@ if (!hasVisited) {
   // Not first visit - hide intro immediately
   document.getElementById('introAnimation').style.display = 'none';
 }
+
+// Debug video loading
+const video = document.getElementById('cloudVideo');
+video.addEventListener('loadeddata', function() {
+  console.log('Video loaded successfully');
+});
+video.addEventListener('error', function(e) {
+  console.error('Video failed to load:', e);
+});
 </script>
 
 </body>
