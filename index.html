@@ -5,15 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>AngelWorx — Film & Production Studio</title>
 
+<!-- Cinematic + Modern Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
 <link rel="icon" href="assets/favicon.ico" />
 
 <style>
 :root {
-  --ink: #0e0e11;
+  --ink: #0b0b0d;
   --paper: #ffffff;
-  --cyan: #00c2ff;
-  --red: #e63946;
-  --blue: #3a86ff;
+  --mist: #f3f4f8;
+  --accent-blue: #3a86ff;
+  --accent-red: #e63946;
   --muted: #6b6b76;
   --line: #e6e6eb;
 }
@@ -29,7 +32,7 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, sans-serif;
   background: var(--paper);
   color: var(--ink);
   line-height: 1.6;
@@ -41,8 +44,8 @@ a {
 }
 
 img {
-  max-width: 100%;
   display: block;
+  max-width: 100%;
 }
 
 /* ---------------- HEADER ---------------- */
@@ -65,12 +68,6 @@ header {
   justify-content: space-between;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
 .brand img {
   height: 42px;
 }
@@ -82,61 +79,67 @@ header {
 }
 
 .nav-links a:hover {
-  color: var(--blue);
+  color: var(--accent-blue);
 }
 
-/* ---------------- HERO ---------------- */
+/* ---------------- HERO WITH CLOUDS ---------------- */
 
 .hero {
-  max-width: 1200px;
-  margin: auto;
-  padding: 6rem 1.5rem 4rem;
+  position: relative;
+  overflow: hidden;
+  padding: 8rem 1.5rem 6rem;
   text-align: center;
+  background: linear-gradient(to bottom, #ffffff, var(--mist));
+}
+
+/* Cloud layer */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23e9ecf5' fill-opacity='0.7' d='M0,160L120,149.3C240,139,480,117,720,122.7C960,128,1200,160,1320,176L1440,192L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z'%3E%3C/path%3E%3C/svg%3E")
+    repeat-x;
+  background-size: 1600px 320px;
+  animation: clouds 60s linear infinite;
+  opacity: 0.9;
+}
+
+@keyframes clouds {
+  from { background-position-x: 0; }
+  to { background-position-x: 1600px; }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero::before {
+    animation: none;
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: auto;
 }
 
 .hero h1 {
-  font-size: clamp(2.4rem, 5vw, 3.8rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-family: Cinzel, serif;
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  letter-spacing: 0.04em;
 }
 
 .hero .tagline {
   margin-top: 1rem;
-  font-size: 1.1rem;
   color: var(--muted);
+  font-size: 1.1rem;
 }
 
 .hero .manifesto {
-  margin-top: 2rem;
-  font-size: 1.25rem;
+  margin-top: 2.5rem;
+  font-size: 1.3rem;
   font-style: italic;
-}
-
-.hero .manifesto span {
-  color: var(--cyan);
-}
-
-/* ---------------- FEATURED VIDEO ---------------- */
-
-.video-feature {
-  max-width: 1100px;
-  margin: 4rem auto;
-  padding: 0 1.5rem;
-}
-
-.video-frame {
-  position: relative;
-  padding-top: 56.25%;
-  border-radius: 16px;
-  overflow: hidden;
-  background: #000;
-}
-
-.video-frame iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
 }
 
 /* ---------------- SECTIONS ---------------- */
@@ -148,9 +151,9 @@ section {
 }
 
 .section-title {
+  font-family: Cinzel, serif;
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  letter-spacing: -0.02em;
 }
 
 /* ---------------- GALLERY ---------------- */
@@ -164,11 +167,7 @@ section {
 .gallery-item {
   position: relative;
   overflow: hidden;
-  border-radius: 12px;
-}
-
-.gallery-item img {
-  width: 100%;
+  border-radius: 14px;
 }
 
 .gallery-overlay {
@@ -181,7 +180,7 @@ section {
   flex-direction: column;
   justify-content: flex-end;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity .3s ease;
 }
 
 .gallery-item:hover .gallery-overlay {
@@ -192,42 +191,25 @@ section {
 
 .services {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
   gap: 1.5rem;
 }
 
 .service {
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 16px;
   padding: 2rem;
-  transition: transform 0.25s ease, border-color 0.25s ease;
-}
-
-.service:hover {
-  transform: translateY(-4px);
-  border-color: var(--cyan);
 }
 
 .service h3 {
-  margin-bottom: 0.5rem;
-}
-
-/* ---------------- CURRENT WORK ---------------- */
-
-.work-item {
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.work-item span {
-  color: var(--muted);
+  margin-bottom: .5rem;
 }
 
 /* ---------------- CONTACT ---------------- */
 
 .contact {
   background: #f7f7fa;
-  border-radius: 20px;
+  border-radius: 24px;
 }
 
 .socials {
@@ -237,8 +219,8 @@ section {
 }
 
 .socials a {
+  color: var(--accent-blue);
   font-weight: 500;
-  color: var(--blue);
 }
 
 /* ---------------- FOOTER ---------------- */
@@ -246,17 +228,7 @@ section {
 footer {
   padding: 3rem 1.5rem;
   text-align: center;
-  font-size: 0.9rem;
   color: var(--muted);
-}
-
-/* ---------------- REDUCED MOTION ---------------- */
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
 }
 </style>
 </head>
@@ -279,33 +251,23 @@ footer {
 <main>
 
 <section class="hero">
-  <h1>AngelWorx</h1>
-  <p class="tagline">Film & Production Studio</p>
+  <div class="hero-content">
+    <h1>AngelWorx</h1>
+    <p class="tagline">Film & Production Studio</p>
 
-  <p class="manifesto">
-    “We don’t chase trends.  
-    <span>We build worlds.</span>  
-    We let the frame speak.”
-  </p>
-</section>
-
-<section class="video-feature">
-  <div class="video-frame">
-    <iframe 
-      src="https://www.youtube.com/embed/VIDEO_ID_HERE"
-      title="AngelWorx Featured Reel"
-      frameborder="0"
-      allowfullscreen>
-    </iframe>
+    <p class="manifesto">
+      “We don’t chase trends.  
+      We build worlds.  
+      We let the frame speak.”
+    </p>
   </div>
 </section>
 
-<section>
+<section id="work">
   <h2 class="section-title">Selected Work</h2>
-
   <div class="gallery">
     <div class="gallery-item">
-      <img src="assets/DSC_0125.JPG" alt="AngelWorx production still">
+      <img src="assets/DSC_0125.JPG" alt="Production still">
       <div class="gallery-overlay">
         <strong>Highveld Hustlers</strong>
         <span>Pilot</span>
@@ -314,49 +276,31 @@ footer {
   </div>
 </section>
 
-<section id="work">
-  <h2 class="section-title">Current Projects</h2>
-
-  <div class="work-item">
-    <strong>Highveld Hustlers</strong><br />
-    <span>Television Pilot</span>
-  </div>
-
-  <div class="work-item">
-    <strong>The Last Will</strong><br />
-    <span>Short Film</span>
-  </div>
-</section>
-
 <section id="services">
   <h2 class="section-title">What We Do</h2>
-
   <div class="services">
     <div class="service">
       <h3>Film Production</h3>
-      <p>From concept to final delivery — narrative, commercial, and experimental.</p>
+      <p>Concept to screen, narrative and commercial.</p>
     </div>
     <div class="service">
       <h3>Animation</h3>
-      <p>2D, 3D, and hybrid animation for film, brands, and digital platforms.</p>
+      <p>2D, 3D, hybrid visual storytelling.</p>
     </div>
     <div class="service">
       <h3>Location Scouting</h3>
-      <p>Authentic locations with cinematic potential, logistics handled.</p>
+      <p>Cinematic locations with full logistics.</p>
     </div>
     <div class="service">
       <h3>Post Production</h3>
-      <p>Editing, grading, sound, and finishing with restraint and taste.</p>
+      <p>Editing, grading, sound, finishing.</p>
     </div>
   </div>
 </section>
 
 <section id="contact" class="contact">
   <h2 class="section-title">Contact & Updates</h2>
-
-  <p>
-    Studio updates, releases, and behind-the-scenes moments.
-  </p>
+  <p>Studio releases, announcements, and behind the scenes.</p>
 
   <div class="socials">
     <a href="https://youtube.com/@lesjones-tt2dy" target="_blank">YouTube</a>
