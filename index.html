@@ -116,10 +116,11 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.3;
+  opacity: 0.85;
+  filter: brightness(1.1) contrast(1.1);
 }
 
-/* Gradient overlay for depth */
+/* Lighter overlay to show more clouds */
 .cloud-overlay {
   position: fixed;
   top: 0;
@@ -128,11 +129,12 @@ body {
   height: 100%;
   background: linear-gradient(
     to bottom,
-    rgba(255,255,255,0.92) 0%,
-    rgba(255,255,255,0.88) 50%,
-    rgba(255,255,255,0.92) 100%
+    rgba(30,60,100,0.3) 0%,
+    rgba(40,70,110,0.2) 50%,
+    rgba(30,60,100,0.3) 100%
   );
   z-index: 2;
+  pointer-events: none;
 }
 
 /* Content wrapper */
@@ -145,9 +147,9 @@ body {
 header {
   position: sticky;
   top: 0;
-  background: rgba(255,255,255,0.95);
+  background: rgba(20,40,70,0.85);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   z-index: 100;
   padding: 20px 0;
   animation: slideDown 0.6s ease-out;
@@ -169,7 +171,7 @@ header {
   margin: 0 auto;
   padding: 0 48px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
@@ -177,32 +179,30 @@ header {
   display: flex;
   align-items: center;
   gap: 14px;
-  font-size: 1.3rem;
-  font-weight: 700;
+  font-size: 1.8rem;
+  font-weight: 800;
   letter-spacing: -0.02em;
-  color: #000;
-}
-
-.logo img {
-  height: 40px;
-  width: auto;
-  display: block;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 nav {
   display: flex;
   gap: 40px;
   align-items: center;
+  position: absolute;
+  right: 48px;
 }
 
 nav a {
   text-decoration: none;
-  color: #1a1a1a;
+  color: rgba(255,255,255,0.9);
   font-weight: 500;
   font-size: 0.95rem;
   letter-spacing: 0.01em;
   transition: color 0.3s ease, transform 0.3s ease;
   position: relative;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
 
 nav a::after {
@@ -212,30 +212,45 @@ nav a::after {
   left: 0;
   width: 0;
   height: 2px;
-  background: #000;
+  background: #fff;
   transition: width 0.3s ease;
 }
 
 nav a:hover {
-  color: #000;
+  color: #fff;
 }
 
 nav a:hover::after {
   width: 100%;
 }
 
+/* ---------------- BRAND LOGO SECTION ---------------- */
+.brand-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 48px 40px;
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.brand-logo img {
+  height: 160px;
+  width: auto;
+  filter: drop-shadow(0 4px 20px rgba(0,0,0,0.4));
+}
+
 /* ---------------- HERO ---------------- */
 .hero {
-  min-height: 90vh;
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 160px 48px 120px;
+  padding: 40px 48px 120px;
   max-width: 1400px;
   margin: 0 auto;
-  animation: fadeInUp 1s ease-out 0.2s both;
+  animation: fadeInUp 1s ease-out 0.4s both;
 }
 
 @keyframes fadeInUp {
@@ -250,29 +265,32 @@ nav a:hover::after {
 }
 
 .hero h1 {
-  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-size: clamp(3rem, 7vw, 6rem);
   font-weight: 800;
-  line-height: 0.95;
-  margin-bottom: 32px;
+  line-height: 1.1;
+  margin-bottom: 24px;
   letter-spacing: -0.04em;
-  color: #000;
+  color: #fff;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
 
 .hero p.tagline {
-  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-  color: #333;
-  margin-bottom: 16px;
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  color: rgba(255,255,255,0.95);
+  margin-bottom: 12px;
   font-weight: 400;
   letter-spacing: 0.02em;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.4);
 }
 
 .hero p.quote {
   font-style: italic;
-  color: #666;
-  font-size: 1.1rem;
+  color: rgba(255,255,255,0.85);
+  font-size: 1rem;
   max-width: 600px;
   line-height: 1.6;
   margin: 0 auto;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
 /* ---------------- SECTIONS ---------------- */
@@ -281,6 +299,14 @@ section {
   max-width: 1400px;
   margin: 0 auto;
   animation: fadeInUp 0.8s ease-out both;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  margin-bottom: 0;
+}
+
+section:first-of-type {
+  margin-top: 0;
+  border-radius: 20px 20px 0 0;
 }
 
 section h2 {
@@ -395,7 +421,7 @@ footer {
   color: #999;
   text-align: center;
   border-top: 1px solid rgba(0,0,0,0.06);
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.95);
 }
 
 /* ---------------- RESPONSIVE ---------------- */
@@ -405,15 +431,34 @@ footer {
   }
 
   nav {
-    gap: 24px;
+    position: static;
+    margin-top: 12px;
+    gap: 20px;
+  }
+
+  .header-inner {
+    flex-direction: column;
+    gap: 12px;
   }
 
   nav a {
     font-size: 0.9rem;
   }
 
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .brand-logo {
+    padding: 40px 24px 30px;
+  }
+
+  .brand-logo img {
+    height: 100px;
+  }
+
   .hero {
-    padding: 100px 24px 80px;
+    padding: 30px 24px 80px;
   }
 
   section {
@@ -483,7 +528,6 @@ footer {
   <header>
     <div class="header-inner">
       <div class="logo">
-        <img src="assets/Gemini_Generated_Image_3as9hz3as9hz3as9.png" alt="AngelWorx logo">
         <strong>AngelWorx</strong>
       </div>
       <nav>
@@ -493,6 +537,11 @@ footer {
       </nav>
     </div>
   </header>
+
+  <!-- BRAND LOGO -->
+  <div class="brand-logo">
+    <img src="assets/Gemini_Generated_Image_3as9hz3as9hz3as9.png" alt="AngelWorx">
+  </div>
 
   <!-- HERO -->
   <div class="hero">
